@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://la-manada-veterinaria.sites.openai.com'),
+  metadataBase: new URL('https://la-manada-veterinaria.angeleplata91.chatgpt.site'),
   title: 'La Manada | Veterinaria y tienda de mascotas en Tijuana',
   description:
     'Veterinaria, estética, alimentos y accesorios para mascotas en Tijuana. Los queremos tanto como tú.',
