@@ -1,4 +1,4 @@
-import Image from 'next/image';
+/* eslint-disable @next/next/no-img-element */
 
 const phone = '664 976 3634';
 const whatsappUrl =
@@ -121,11 +121,9 @@ export default function Home() {
       <header className="sticky top-0 z-40 border-b border-[#d7ebe4] bg-[#f7fbf5]/94 backdrop-blur">
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8 lg:px-10">
           <a href="#inicio" className="flex min-w-0 items-center gap-3" aria-label="Ir al inicio">
-            <Image
+            <img
               src="/la-manada-isotipo.png"
               alt="Isotipo de La Manada"
-              width={48}
-              height={48}
               className="h-12 w-12 shrink-0 rounded-full bg-[#073b75] object-contain p-1"
             />
             <span className="hidden text-lg font-black text-[#073b75] sm:block">LA MANADA</span>
@@ -157,22 +155,17 @@ export default function Home() {
       </header>
 
       <section id="inicio" className="relative min-h-[760px] overflow-hidden bg-[#073b75] text-white">
-        <Image
+        <img
           src="https://images.unsplash.com/photo-1727419780738-8b9e85ab9ca6?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2F0JTIwYW5kJTIwZG9nZXRoZXJ8ZW58MHx8MHx8fDA%3D&ixlib=rb-4.1.0&q=72&w=2200"
           alt="Perro y gato juntos en casa"
-          fill
-          priority
-          sizes="100vw"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-[#052e5b]/72" />
         <div className="relative mx-auto flex min-h-[760px] max-w-7xl flex-col justify-between px-5 py-10 sm:px-8 lg:px-10">
           <div className="max-w-4xl pt-6 sm:pt-12">
-            <Image
+            <img
               src="/la-manada-logo.png"
               alt="La Manada, los queremos tanto como tú"
-              width={520}
-              height={148}
               className="mb-8 w-[min(430px,100%)] rounded-lg bg-[#073b75]/95 p-4 shadow-2xl"
             />
             <p className="w-fit rounded-full border border-white/28 bg-white/14 px-4 py-2 text-sm font-black text-white backdrop-blur">
@@ -275,11 +268,9 @@ export default function Home() {
             </a>
           </div>
           <div className="flex items-center justify-center rounded-lg border border-[#cbe4d6] bg-white p-8">
-            <Image
+            <img
               src="/la-manada-isotipo.png"
               alt="Isotipo de La Manada con perro, gato, pez y ave"
-              width={420}
-              height={420}
               className="w-full max-w-sm"
             />
           </div>
@@ -424,11 +415,9 @@ export default function Home() {
       <footer className="bg-white">
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 md:grid-cols-[1fr_auto] lg:px-10">
           <div>
-            <Image
+            <img
               src="/la-manada-logo.png"
               alt="La Manada"
-              width={520}
-              height={148}
               className="w-72 rounded-lg bg-[#073b75] p-3"
             />
             <p className="mt-5 max-w-2xl leading-7 text-[#48636a]">
