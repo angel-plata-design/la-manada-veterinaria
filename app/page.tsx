@@ -50,33 +50,6 @@ const highlights = [
   { value: 'Tijuana', label: 'Urbiquinta Del Cedro', Icon: MapPin, color: 'bg-[#e4ecff] text-[#073b75]' },
 ];
 
-const quickLinks = [
-  {
-    href: '#veterinaria',
-    eyebrow: 'Veterinaria',
-    title: 'Consulta y prevención',
-    copy: 'Atención para cuidar su salud y dar seguimiento a cada etapa.',
-    Icon: Stethoscope,
-    color: 'bg-[#dbf7ff] text-[#036b85]',
-  },
-  {
-    href: '#tienda',
-    eyebrow: 'Tienda',
-    title: 'Alimento y accesorios',
-    copy: 'Productos para perros y gatos, con orientación cercana.',
-    Icon: ShoppingBag,
-    color: 'bg-[#fff0bd] text-[#9a5b00]',
-  },
-  {
-    href: '#contacto',
-    eyebrow: 'WhatsApp',
-    title: 'Agenda o consulta',
-    copy: 'Resuelve dudas, confirma horarios y pregunta por disponibilidad.',
-    Icon: MessageCircle,
-    color: 'bg-[#dff8da] text-[#27780e]',
-  },
-];
-
 const services = [
   {
     title: 'Consulta veterinaria',
@@ -175,6 +148,33 @@ const visualMoments = [
   },
 ];
 
+const sliderImages = [
+  {
+    image: photos.vet,
+    alt: 'Mascota recibiendo atención veterinaria',
+    title: 'Veterinaria cercana',
+    copy: 'Cuidado preventivo y acompañamiento para cada etapa.',
+  },
+  {
+    image: photos.accessories,
+    alt: 'Perro con accesorio colorido',
+    title: 'Tienda para consentirlos',
+    copy: 'Accesorios, alimento y detalles para su rutina diaria.',
+  },
+  {
+    image: photos.playful,
+    alt: 'Perro pequeño sobre fondo amarillo',
+    title: 'Higiene y bienestar',
+    copy: 'Una experiencia más cálida, alegre y cómoda.',
+  },
+  {
+    image: photos.hero,
+    alt: 'Perro y gato juntos en casa',
+    title: 'Todo para tu manada',
+    copy: 'Servicios y productos en un mismo lugar.',
+  },
+];
+
 const faqs = [
   {
     q: '¿Puedo agendar por WhatsApp?',
@@ -201,11 +201,13 @@ function CtaButtons() {
         Agendar cita
       </a>
       <a
-        href="#tienda"
+        href={mapsUrl}
+        target="_blank"
+        rel="noreferrer"
         className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/55 bg-white/18 px-7 text-base font-black text-white transition hover:bg-white/28 focus:outline-none focus:ring-4 focus:ring-white/35"
       >
         <Store aria-hidden="true" className="mr-2 h-5 w-5" />
-        Conocer la tienda
+        Conoce nuestra tienda
       </a>
     </div>
   );
@@ -260,81 +262,84 @@ export default function Home() {
       </header>
 
       <section id="inicio" className="relative overflow-hidden bg-[#073b75] text-white">
-        <img
-          src={photos.hero}
-          alt="Perro y gato juntos en casa"
-          fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-[#052e5b]/78" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-[#f7fbf5]" />
-
-        <div className="relative mx-auto grid min-h-[820px] max-w-7xl gap-10 px-5 py-10 sm:px-8 lg:grid-cols-[1fr_0.95fr] lg:px-10 lg:py-14">
-          <div className="flex flex-col justify-center">
+        <div className="absolute left-0 top-0 h-3 w-full bg-[#ff8a1d]" />
+        <div className="absolute bottom-0 left-0 h-3 w-full bg-[#78bd2f]" />
+        <div className="relative mx-auto min-h-[650px] max-w-7xl px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
+          <div className="mx-auto flex min-h-[540px] max-w-5xl flex-col items-center justify-center text-center">
             <img
               src="/la-manada-logo.png"
               alt="La Manada, los queremos tanto como tú"
-              className="mb-8 w-[min(430px,100%)] rounded-lg bg-[#073b75]/95 p-4 shadow-2xl"
+              className="mb-8 w-[min(500px,100%)] rounded-lg bg-[#073b75] p-4 shadow-2xl"
             />
-            <p className="w-fit rounded-full border border-white/28 bg-white/14 px-4 py-2 text-sm font-black text-white backdrop-blur">
+            <p className="rounded-full border border-white/28 bg-white/14 px-4 py-2 text-sm font-black text-white backdrop-blur">
               Veterinaria y tienda para mascotas en Tijuana
             </p>
             <h1 className="mt-6 max-w-4xl text-5xl font-black leading-none text-white sm:text-6xl lg:text-7xl">
               Todo para su bienestar, en un solo lugar.
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-[#eef9f6] sm:text-xl">
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-[#eef9f6] sm:text-xl">
               Veterinaria, cuidado preventivo, estética, alimentos y accesorios para
               acompañarlos con cariño en cada etapa de su vida.
             </p>
             <div className="mt-8">
               <CtaButtons />
             </div>
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {quickLinks.map(({ href, title, Icon, color }) => (
-                <a
-                  key={title}
-                  href={href}
-                  className="flex min-h-16 items-center gap-3 rounded-lg border border-white/28 bg-white/14 p-3 font-black text-white backdrop-blur transition hover:bg-white/24 focus:outline-none focus:ring-4 focus:ring-white/35"
-                >
+            <div className="mt-9 grid w-full max-w-3xl gap-3 sm:grid-cols-3">
+              {[
+                { label: 'Veterinaria', Icon: Stethoscope, color: 'bg-[#dbf7ff] text-[#036b85]' },
+                { label: 'Tienda', Icon: Store, color: 'bg-[#fff0bd] text-[#9a5b00]' },
+                { label: 'WhatsApp', Icon: MessageCircle, color: 'bg-[#dff8da] text-[#27780e]' },
+              ].map(({ label, Icon, color }) => (
+                <div key={label} className="flex min-h-16 items-center justify-center gap-3 rounded-lg border border-white/22 bg-white/12 p-3 font-black text-white">
                   <IconBubble Icon={Icon} className={color} />
-                  {title}
-                </a>
+                  {label}
+                </div>
               ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="grid content-center gap-4 sm:grid-cols-2">
-            <figure className="overflow-hidden rounded-lg border border-white/28 bg-white shadow-[0_24px_60px_rgba(0,0,0,0.22)] sm:col-span-2">
-              <img
-                src={photos.vet}
-                alt="Mascota recibiendo atención veterinaria"
-                className="h-60 w-full object-cover sm:h-72"
-              />
-              <figcaption className="flex items-center gap-3 bg-white p-4 text-[#073b75]">
-                <IconBubble Icon={Stethoscope} className="bg-[#dbf7ff] text-[#036b85]" />
-                <span className="text-lg font-black">Cuidado cercano desde la consulta</span>
-              </figcaption>
-            </figure>
-            <figure className="overflow-hidden rounded-lg border border-white/28 bg-[#fff0bd] shadow-[0_18px_42px_rgba(0,0,0,0.18)]">
-              <img
-                src={photos.accessories}
-                alt="Perro con accesorio colorido"
-                className="h-48 w-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption className="p-4 text-lg font-black text-[#073b75]">Accesorios</figcaption>
-            </figure>
-            <figure className="overflow-hidden rounded-lg border border-white/28 bg-[#dff8da] shadow-[0_18px_42px_rgba(0,0,0,0.18)]">
-              <img
-                src={photos.food}
-                alt="Croquetas para mascota en un plato"
-                className="h-48 w-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption className="p-4 text-lg font-black text-[#073b75]">Nutrición</figcaption>
-            </figure>
+      <section aria-label="Galería de La Manada" className="bg-[#f7fbf5] px-5 py-10 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-5 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
+            <div>
+              <p className="text-sm font-black uppercase text-[#0b7f78]">Galería</p>
+              <h2 className="mt-2 text-3xl font-black text-[#073b75] sm:text-4xl">
+                Una mirada bonita a lo que vive tu manada.
+              </h2>
+            </div>
+            <div className="flex gap-2" aria-hidden="true">
+              {sliderImages.map((item) => (
+                <span key={item.title} className="h-2.5 w-10 rounded-full bg-[#ff8a1d]" />
+              ))}
+            </div>
+          </div>
+          <div className="la-manada-slider relative min-h-[430px] overflow-hidden rounded-lg border border-[#d7ebe4] bg-[#073b75] shadow-[0_24px_70px_rgba(7,59,117,0.18)] sm:min-h-[560px]">
+            {sliderImages.map((item, index) => (
+              <figure
+                key={item.title}
+                className="la-manada-slide absolute inset-0"
+                style={{ animationDelay: `${index * 5}s` }}
+              >
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  className="h-full w-full object-cover"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 bg-[#073b75]/88 p-5 text-white backdrop-blur sm:p-7">
+                  <div className="flex max-w-3xl items-start gap-4">
+                    <IconBubble Icon={PawPrint} className="bg-[#fff0bd] text-[#9a5b00]" />
+                    <div>
+                      <h3 className="text-2xl font-black sm:text-3xl">{item.title}</h3>
+                      <p className="mt-2 text-base leading-7 text-[#eef9f6] sm:text-lg">{item.copy}</p>
+                    </div>
+                  </div>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>
