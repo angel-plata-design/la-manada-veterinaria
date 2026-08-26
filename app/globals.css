@@ -25,6 +25,22 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
+.hero-bg-slide,
+.hero-copy-slide {
+  opacity: 0;
+  animation: hero-fade 20s infinite;
+}
+
+.hero-bg-slide img {
+  transform: scale(1.03);
+  animation: hero-image 20s infinite;
+}
+
+.hero-copy-slide {
+  transform: translateY(12px);
+  animation-name: hero-copy;
+}
+
 .la-manada-slide {
   opacity: 0;
   animation: la-manada-slide 20s infinite;
@@ -61,13 +77,63 @@ body {
   }
 }
 
+@keyframes hero-fade {
+  0%,
+  20% {
+    opacity: 1;
+  }
+
+  25%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hero-copy {
+  0%,
+  18% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  23%,
+  100% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes hero-image {
+  0% {
+    transform: scale(1.03);
+  }
+
+  24% {
+    transform: scale(1.09);
+  }
+
+  100% {
+    transform: scale(1.09);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .hero-bg-slide,
+  .hero-bg-slide img,
+  .hero-copy-slide,
   .la-manada-slide,
   .la-manada-slide img {
     animation: none;
   }
 
+  .hero-bg-slide:first-child,
+  .hero-copy-slide:first-child,
   .la-manada-slide:first-child {
     opacity: 1;
+  }
+
+  .hero-bg-slide img,
+  .hero-copy-slide {
+    transform: none;
   }
 }

@@ -37,6 +37,33 @@ const photos = {
   food: 'https://unsplash.com/photos/zxqaAkkayP8/download?force=true&w=1200',
 };
 
+const heroSlides = [
+  {
+    image: photos.hero,
+    alt: 'Perro y gato juntos en casa',
+    title: 'Todo para su bienestar, en un solo lugar.',
+    copy: 'Veterinaria, cuidado preventivo, estética, alimentos y accesorios para acompañarlos con cariño.',
+  },
+  {
+    image: photos.vet,
+    alt: 'Perro pequeño en revisión veterinaria',
+    title: 'Cuidado cercano para cada integrante de tu manada.',
+    copy: 'Consulta, prevención y orientación clara para que se sientan mejor.',
+  },
+  {
+    image: photos.accessories,
+    alt: 'Perro con accesorio colorido sobre fondo azul',
+    title: 'Productos, accesorios y detalles que les encantan.',
+    copy: 'Pregunta por disponibilidad y encuentra opciones para perros y gatos.',
+  },
+  {
+    image: photos.playful,
+    alt: 'Perro pequeño sobre fondo amarillo',
+    title: 'Veterinaria y tienda con más color y cariño.',
+    copy: 'Una experiencia amable para ellos y práctica para ti.',
+  },
+];
+
 type IconCard = {
   title: string;
   copy: string;
@@ -206,7 +233,7 @@ function CtaButtons() {
         rel="noreferrer"
         className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/55 bg-white/18 px-7 text-base font-black text-white transition hover:bg-white/28 focus:outline-none focus:ring-4 focus:ring-white/35"
       >
-        <Store aria-hidden="true" className="mr-2 h-5 w-5" />
+        <MapPin aria-hidden="true" className="mr-2 h-5 w-5" />
         Conoce nuestra tienda
       </a>
     </div>
@@ -262,39 +289,49 @@ export default function Home() {
       </header>
 
       <section id="inicio" className="relative overflow-hidden bg-[#073b75] text-white">
+        {heroSlides.map((slide, index) => (
+          <div
+            key={slide.title}
+            className="hero-bg-slide absolute inset-0"
+            style={{ animationDelay: `${index * 5}s` }}
+          >
+            <img
+              src={slide.image}
+              alt=""
+              aria-hidden="true"
+              fetchPriority={index === 0 ? 'high' : 'auto'}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        ))}
+        <div className="absolute inset-0 bg-[#052e5b]/72" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#073b75]/60 via-[#073b75]/62 to-[#052f5c]/82" />
         <div className="absolute left-0 top-0 h-3 w-full bg-[#ff8a1d]" />
         <div className="absolute bottom-0 left-0 h-3 w-full bg-[#78bd2f]" />
-        <div className="relative mx-auto min-h-[650px] max-w-7xl px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
-          <div className="mx-auto flex min-h-[540px] max-w-5xl flex-col items-center justify-center text-center">
-            <img
-              src="/la-manada-logo.png"
-              alt="La Manada, los queremos tanto como tú"
-              className="mb-8 w-[min(500px,100%)] rounded-lg bg-[#073b75] p-4 shadow-2xl"
-            />
-            <p className="rounded-full border border-white/28 bg-white/14 px-4 py-2 text-sm font-black text-white backdrop-blur">
+        <div className="relative mx-auto min-h-[680px] max-w-7xl px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
+          <div className="mx-auto flex min-h-[560px] max-w-5xl flex-col items-center justify-center text-center">
+            <p className="text-base font-light text-white/88 sm:text-lg">
               Veterinaria y tienda para mascotas en Tijuana
             </p>
-            <h1 className="mt-6 max-w-4xl text-5xl font-black leading-none text-white sm:text-6xl lg:text-7xl">
-              Todo para su bienestar, en un solo lugar.
-            </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-[#eef9f6] sm:text-xl">
-              Veterinaria, cuidado preventivo, estética, alimentos y accesorios para
-              acompañarlos con cariño en cada etapa de su vida.
-            </p>
-            <div className="mt-8">
-              <CtaButtons />
-            </div>
-            <div className="mt-9 grid w-full max-w-3xl gap-3 sm:grid-cols-3">
-              {[
-                { label: 'Veterinaria', Icon: Stethoscope, color: 'bg-[#dbf7ff] text-[#036b85]' },
-                { label: 'Tienda', Icon: Store, color: 'bg-[#fff0bd] text-[#9a5b00]' },
-                { label: 'WhatsApp', Icon: MessageCircle, color: 'bg-[#dff8da] text-[#27780e]' },
-              ].map(({ label, Icon, color }) => (
-                <div key={label} className="flex min-h-16 items-center justify-center gap-3 rounded-lg border border-white/22 bg-white/12 p-3 font-black text-white">
-                  <IconBubble Icon={Icon} className={color} />
-                  {label}
+            <h1 className="sr-only">Todo para su bienestar, en un solo lugar.</h1>
+            <div className="relative mt-6 min-h-[300px] w-full sm:min-h-[265px]" aria-hidden="true">
+              {heroSlides.map((slide, index) => (
+                <div
+                  key={slide.title}
+                  className="hero-copy-slide absolute inset-0 flex flex-col items-center justify-center"
+                  style={{ animationDelay: `${index * 5}s` }}
+                >
+                  <p className="max-w-4xl text-5xl font-black leading-none text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.35)] sm:text-6xl lg:text-7xl">
+                    {slide.title}
+                  </p>
+                  <p className="mt-6 max-w-3xl text-lg leading-8 text-[#eef9f6] drop-shadow-[0_8px_18px_rgba(0,0,0,0.3)] sm:text-xl">
+                    {slide.copy}
+                  </p>
                 </div>
               ))}
+            </div>
+            <div className="mt-8">
+              <CtaButtons />
             </div>
           </div>
         </div>
