@@ -25,6 +25,18 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
+section[id] {
+  scroll-margin-top: 76px;
+}
+
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
 .hero-readable-overlay {
   background:
     linear-gradient(

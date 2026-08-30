@@ -2,10 +2,12 @@
 import {
   Bone,
   Cat,
+  Clock,
   Dog,
   HeartHandshake,
   HeartPulse,
   MapPin,
+  Menu,
   MessageCircle,
   PawPrint,
   Scissors,
@@ -24,6 +26,14 @@ const whatsappUrl =
 const mapsUrl =
   'https://www.google.com/maps/search/?api=1&query=P.%C2%BA%20del%20Cedro%2011007%2C%20Urbiquinta%20Del%20Cedro%2C%20Tijuana%2C%20B.C.';
 const facebookUrl = 'https://www.facebook.com/LaManadaMx/?ref=fb';
+
+const navLinks = [
+  { href: '#inicio', label: 'Inicio' },
+  { href: '#veterinaria', label: 'Veterinaria' },
+  { href: '#tienda', label: 'Tienda' },
+  { href: '#nosotros', label: 'Nosotros' },
+  { href: '#contacto', label: 'Contacto' },
+];
 
 const photos = {
   heroFamily:
@@ -184,12 +194,36 @@ const careSteps = [
   },
 ];
 
+const contactDetails = [
+  {
+    title: 'WhatsApp',
+    copy: phone,
+    detail: 'Citas y disponibilidad',
+    href: whatsappUrl,
+    Icon: MessageCircle,
+  },
+  {
+    title: 'Dirección',
+    copy: 'P.º del Cedro 11007',
+    detail: 'Urbiquinta Del Cedro, Tijuana',
+    href: mapsUrl,
+    Icon: MapPin,
+  },
+  {
+    title: 'Horario',
+    copy: 'Confirma antes de venir',
+    detail: 'Te orientamos por WhatsApp',
+    href: whatsappUrl,
+    Icon: Clock,
+  },
+];
+
 function CtaButtons() {
   return (
     <div className="flex flex-col gap-3 sm:flex-row">
       <a
         href={whatsappUrl}
-        className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#0b7f78] px-7 text-base font-black text-white shadow-[0_14px_30px_rgba(11,127,120,0.3)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+        className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-7 text-base font-black text-white shadow-[0_14px_30px_rgba(11,127,120,0.3)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
       >
         <MessageCircle aria-hidden="true" className="mr-2 h-5 w-5" />
         Agendar cita
@@ -198,7 +232,7 @@ function CtaButtons() {
         href={mapsUrl}
         target="_blank"
         rel="noreferrer"
-        className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-7 text-base font-black text-[#073b75] shadow-[0_14px_30px_rgba(7,59,117,0.18)] transition hover:bg-[#eef9f6] focus:outline-none focus:ring-4 focus:ring-white/45"
+        className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-white px-7 text-base font-black text-[#073b75] shadow-[0_14px_30px_rgba(7,59,117,0.18)] transition hover:bg-[#eef9f6] focus:outline-none focus:ring-4 focus:ring-white/45"
       >
         <MapPin aria-hidden="true" className="mr-2 h-5 w-5" />
         Conoce nuestra tienda
@@ -217,10 +251,17 @@ function IconBubble({ Icon, className }: { Icon: LucideIcon; className: string }
 
 export default function Home() {
   return (
+    <>
+    <a
+      href="#inicio"
+      className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-white focus:px-5 focus:py-3 focus:text-sm focus:font-black focus:text-[#073b75] focus:shadow-lg"
+    >
+      Saltar al contenido
+    </a>
     <main className="min-h-screen bg-[#f7fbf5] text-[#102b36]">
       <header className="sticky top-0 z-40 border-b border-[#d7ebe4] bg-[#f7fbf5]/94 backdrop-blur">
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8 lg:px-10">
-          <a href="#inicio" className="flex min-w-0 items-center gap-3" aria-label="Ir al inicio">
+          <a href="#inicio" className="flex min-w-0 cursor-pointer items-center gap-3" aria-label="Ir al inicio">
             <img
               src="/la-manada-isotipo.png"
               alt="Isotipo de La Manada"
@@ -229,29 +270,47 @@ export default function Home() {
             <span className="hidden text-lg font-black text-[#073b75] sm:block">LA MANADA</span>
           </a>
           <div className="hidden items-center gap-6 text-sm font-bold text-[#16445a] md:flex">
-            <a className="transition hover:text-[#0b7f78]" href="#inicio">
-              Inicio
+            {navLinks.map((link) => (
+              <a key={link.href} className="cursor-pointer transition hover:text-[#0b7f78]" href={link.href}>
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <div className="flex items-center gap-2">
+            <details className="relative md:hidden">
+              <summary
+                aria-label="Abrir menú"
+                className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-[#cfe5de] bg-white text-[#073b75] shadow-sm transition hover:bg-[#eef9f6] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+              >
+                <Menu aria-hidden="true" className="h-5 w-5" />
+              </summary>
+              <div className="absolute right-0 top-full z-50 mt-3 w-56 rounded-lg border border-[#d7ebe4] bg-white p-2 shadow-[0_18px_44px_rgba(7,59,117,0.16)]">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    className="block cursor-pointer rounded-md px-4 py-3 text-sm font-black text-[#073b75] transition hover:bg-[#eef9f6]"
+                    href={link.href}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </details>
+            <a
+              href={whatsappUrl}
+              className="hidden min-h-11 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-5 text-sm font-black text-white shadow-[0_10px_24px_rgba(11,127,120,0.24)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] sm:inline-flex"
+            >
+              <MessageCircle aria-hidden="true" className="mr-2 h-4 w-4" />
+              WhatsApp
             </a>
-            <a className="transition hover:text-[#0b7f78]" href="#veterinaria">
-              Veterinaria
-            </a>
-            <a className="transition hover:text-[#0b7f78]" href="#tienda">
-              Tienda
-            </a>
-            <a className="transition hover:text-[#0b7f78]" href="#nosotros">
-              Nosotros
-            </a>
-            <a className="transition hover:text-[#0b7f78]" href="#contacto">
-              Contacto
+            <a
+              href={whatsappUrl}
+              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] text-white shadow-[0_10px_24px_rgba(11,127,120,0.24)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] sm:hidden"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle aria-hidden="true" className="h-5 w-5" />
             </a>
           </div>
-          <a
-            href={whatsappUrl}
-            className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#0b7f78] px-5 text-sm font-black text-white shadow-[0_10px_24px_rgba(11,127,120,0.24)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
-          >
-            <MessageCircle aria-hidden="true" className="mr-2 h-4 w-4" />
-            WhatsApp
-          </a>
         </nav>
       </header>
 
@@ -273,23 +332,23 @@ export default function Home() {
           </div>
         ))}
         <div className="hero-readable-overlay absolute inset-0" />
-        <div className="relative mx-auto min-h-[560px] max-w-7xl px-5 py-10 sm:px-8 lg:px-10 lg:py-14">
-          <div className="flex min-h-[460px] max-w-3xl flex-col items-start justify-center text-left">
+        <div className="relative mx-auto min-h-[520px] max-w-7xl px-5 py-9 sm:min-h-[560px] sm:px-8 lg:px-10 lg:py-14">
+          <div className="flex min-h-[420px] max-w-3xl flex-col items-start justify-center text-left sm:min-h-[460px]">
             <p className="text-base font-light text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.55)] sm:text-lg">
               Veterinaria y tienda para mascotas en Tijuana
             </p>
-            <h1 className="sr-only">Todo para su bienestar, en un solo lugar.</h1>
-            <div className="relative mt-5 min-h-[220px] w-full sm:min-h-[230px]" aria-hidden="true">
+            <h1 className="sr-only">La Manada, veterinaria y tienda para mascotas en Tijuana.</h1>
+            <div className="relative mt-4 min-h-[178px] w-full sm:mt-5 sm:min-h-[230px]" aria-hidden="true">
               {heroSlides.map((slide, index) => (
                 <div
                   key={slide.title}
                   className="hero-copy-slide absolute inset-0 flex flex-col items-start justify-center"
                   style={{ animationDelay: `${index * 5}s` }}
                 >
-                  <p className="max-w-3xl text-5xl font-black leading-[0.96] text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-6xl lg:text-7xl">
+                  <p className="max-w-3xl text-4xl font-black leading-[1] text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-6xl lg:text-7xl">
                     {slide.title}
                   </p>
-                  <p className="mt-5 max-w-2xl text-lg leading-8 text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.56)] sm:text-xl">
+                  <p className="mt-4 max-w-2xl text-base leading-7 text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.56)] sm:mt-5 sm:text-xl">
                     {slide.copy}
                   </p>
                 </div>
@@ -366,13 +425,11 @@ export default function Home() {
               El cuidado se comunica de forma cálida: atención profesional,
               orientación para casa y seguimiento cuando tu mascota lo necesita.
             </p>
-            <a
-              href={whatsappUrl}
-              className="mt-7 inline-flex min-h-12 w-fit items-center justify-center rounded-full bg-[#ff8a1d] px-7 font-black text-white transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
-            >
-              <MessageCircle aria-hidden="true" className="mr-2 h-5 w-5" />
-              Agenda una consulta
-            </a>
+            <div className="mt-7 flex flex-wrap gap-3 text-sm font-black text-[#eef9f6]">
+              <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2">Consulta</span>
+              <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2">Prevención</span>
+              <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2">Seguimiento</span>
+            </div>
           </div>
           <div className="rounded-lg border border-white/18 bg-white/10 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.14)]">
             <p className="text-sm font-black uppercase text-[#fff0bd]">Así funciona</p>
@@ -419,7 +476,7 @@ export default function Home() {
             </div>
             <a
               href={whatsappUrl}
-              className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#ff8a1d] px-7 text-base font-black text-white shadow-[0_14px_30px_rgba(255,138,29,0.22)] transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
+              className="mt-8 inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-[#ff8a1d] px-7 text-base font-black text-white shadow-[0_14px_30px_rgba(255,138,29,0.22)] transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
             >
               <ShoppingBag aria-hidden="true" className="mr-2 h-5 w-5" />
               Consultar productos
@@ -503,28 +560,41 @@ export default function Home() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href={whatsappUrl}
-                className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#ff8a1d] px-7 text-base font-black text-white transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
+                className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-[#ff8a1d] px-7 text-base font-black text-white transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
               >
                 <MessageCircle aria-hidden="true" className="mr-2 h-5 w-5" />
                 {phone}
               </a>
               <a
                 href={mapsUrl}
-                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/45 bg-white/12 px-7 text-base font-black text-white transition hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/35"
+                className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full border border-white/45 bg-white/12 px-7 text-base font-black text-white transition hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/35"
               >
                 <MapPin aria-hidden="true" className="mr-2 h-5 w-5" />
                 Cómo llegar
               </a>
             </div>
           </div>
-          <address className="rounded-lg border border-white/18 bg-white/12 p-7 not-italic leading-8 text-[#eef9f6]">
-            <MapPin aria-hidden="true" className="mb-4 h-10 w-10 text-[#98ead7]" />
-            <strong className="block text-2xl text-white">Ven a conocernos</strong>
-            P.º del Cedro 11007<br />
-            Urbiquinta Del Cedro, 22564<br />
-            Tijuana, Baja California<br />
-            <span className="mt-4 block">Confirma horario y disponibilidad por WhatsApp antes de visitar.</span>
-            <a className="mt-4 inline-flex items-center font-black text-[#98ead7]" href={facebookUrl}>
+          <address className="rounded-lg border border-white/18 bg-white/12 p-5 not-italic text-[#eef9f6] shadow-[0_18px_44px_rgba(0,0,0,0.14)] sm:p-7">
+            <strong className="block text-2xl font-black text-white">Contacto directo</strong>
+            <div className="mt-5 grid gap-3">
+              {contactDetails.map(({ title, copy, detail, href, Icon }) => (
+                <a
+                  key={title}
+                  href={href}
+                  target={href === mapsUrl ? '_blank' : undefined}
+                  rel={href === mapsUrl ? 'noreferrer' : undefined}
+                  className="grid cursor-pointer grid-cols-[auto_1fr] gap-4 rounded-lg border border-white/12 bg-white/10 p-4 transition hover:bg-white/18 focus:outline-none focus:ring-4 focus:ring-white/30"
+                >
+                  <IconBubble Icon={Icon} className="bg-white text-[#073b75]" />
+                  <span>
+                    <span className="block text-xs font-black uppercase text-[#98ead7]">{title}</span>
+                    <span className="mt-1 block text-lg font-black leading-snug text-white">{copy}</span>
+                    <span className="mt-1 block text-sm leading-6 text-[#dceee9]">{detail}</span>
+                  </span>
+                </a>
+              ))}
+            </div>
+            <a className="mt-5 inline-flex cursor-pointer items-center font-black text-[#98ead7] hover:text-white" href={facebookUrl}>
               <PawPrint aria-hidden="true" className="mr-2 h-5 w-5" />
               Facebook: LaManadaMx
             </a>
@@ -561,5 +631,6 @@ export default function Home() {
         </div>
       </footer>
     </main>
+    </>
   );
 }
