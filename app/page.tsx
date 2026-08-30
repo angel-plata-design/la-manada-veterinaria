@@ -29,36 +29,63 @@ const mapsUrl =
 const facebookUrl = 'https://www.facebook.com/LaManadaMx/?ref=fb';
 
 const photos = {
-  hero:
-    'https://images.unsplash.com/photo-1727419780738-8b9e85ab9ca6?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2F0JTIwYW5kJTIwZG9nZXRoZXJ8ZW58MHx8MHx8fDA%3D&ixlib=rb-4.1.0&q=72&w=2200',
-  vet: 'https://unsplash.com/photos/u2H8mUzoF2Q/download?force=true&w=1200',
-  accessories: 'https://unsplash.com/photos/oU6KZTXhuvk/download?force=true&w=1200',
-  playful: 'https://unsplash.com/photos/Qb7D1xw28Co/download?force=true&w=1200',
-  food: 'https://unsplash.com/photos/zxqaAkkayP8/download?force=true&w=1200',
+  heroFamily:
+    'https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&q=82&w=2200',
+  heroCare:
+    'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=82&w=2200',
+  heroPlay:
+    'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=82&w=2200',
+  heroCat:
+    'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&q=82&w=2200',
+  serviceConsult: 'https://unsplash.com/photos/u2H8mUzoF2Q/download?force=true&w=1400',
+  servicePrevention:
+    'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&q=80&w=1400',
+  serviceGrooming:
+    'https://images.unsplash.com/photo-1560743641-3914f2c45636?auto=format&fit=crop&q=80&w=1400',
+  serviceStore: 'https://unsplash.com/photos/oU6KZTXhuvk/download?force=true&w=1400',
+  galleryCare:
+    'https://images.unsplash.com/photo-1601758174114-e711c0cbaa69?auto=format&fit=crop&q=80&w=1800',
+  galleryStore:
+    'https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?auto=format&fit=crop&q=80&w=1800',
+  galleryJoy:
+    'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&q=80&w=1800',
+  galleryCat:
+    'https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&q=80&w=1800',
+  momentCare:
+    'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=1400',
+  momentStore:
+    'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&q=80&w=1400',
+  momentGrooming:
+    'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&q=80&w=1400',
+  food: 'https://unsplash.com/photos/zxqaAkkayP8/download?force=true&w=1400',
+  about:
+    'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&q=80&w=1400',
+  trust:
+    'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&q=80&w=1400',
 };
 
 const heroSlides = [
   {
-    image: photos.hero,
+    image: photos.heroFamily,
     alt: 'Perro y gato juntos en casa',
     title: 'Todo para su bienestar, en un solo lugar.',
     copy: 'Veterinaria, cuidado preventivo, estética, alimentos y accesorios para acompañarlos con cariño.',
   },
   {
-    image: photos.vet,
+    image: photos.heroCare,
     alt: 'Perro pequeño en revisión veterinaria',
     title: 'Cuidado cercano para cada integrante de tu manada.',
     copy: 'Consulta, prevención y orientación clara para que se sientan mejor.',
   },
   {
-    image: photos.accessories,
-    alt: 'Perro con accesorio colorido sobre fondo azul',
+    image: photos.heroPlay,
+    alt: 'Perros caminando juntos',
     title: 'Productos, accesorios y detalles que les encantan.',
     copy: 'Pregunta por disponibilidad y encuentra opciones para perros y gatos.',
   },
   {
-    image: photos.playful,
-    alt: 'Perro pequeño sobre fondo amarillo',
+    image: photos.heroCat,
+    alt: 'Gato mirando a cámara',
     title: 'Veterinaria y tienda con más color y cariño.',
     copy: 'Una experiencia amable para ellos y práctica para ti.',
   },
@@ -81,7 +108,7 @@ const services = [
   {
     title: 'Consulta veterinaria',
     copy: 'Evaluación profesional, orientación y seguimiento para cuidar el bienestar de tu mascota.',
-    image: photos.vet,
+    image: photos.serviceConsult,
     alt: 'Perro pequeño en una revisión veterinaria',
     Icon: Stethoscope,
     color: 'bg-[#dbf7ff] text-[#036b85]',
@@ -89,7 +116,7 @@ const services = [
   {
     title: 'Vacunación y prevención',
     copy: 'Cuidado preventivo para perros y gatos, con recomendaciones claras para casa.',
-    image: photos.hero,
+    image: photos.servicePrevention,
     alt: 'Perro y gato conviviendo en casa',
     Icon: Syringe,
     color: 'bg-[#ffe2dd] text-[#b42318]',
@@ -97,7 +124,7 @@ const services = [
   {
     title: 'Estética e higiene',
     copy: 'Baños, limpieza y soluciones de cuidado para que se sientan cómodos.',
-    image: photos.playful,
+    image: photos.serviceGrooming,
     alt: 'Perrito pequeño con fondo amarillo',
     Icon: Sparkles,
     color: 'bg-[#fff0bd] text-[#9a5b00]',
@@ -105,7 +132,7 @@ const services = [
   {
     title: 'Tienda para mascotas',
     copy: 'Alimentos, premios, accesorios y productos de bienestar en el mismo lugar.',
-    image: photos.accessories,
+    image: photos.serviceStore,
     alt: 'Perro con ropa colorida sobre fondo azul',
     Icon: Store,
     color: 'bg-[#e6e1ff] text-[#5536a8]',
@@ -152,7 +179,7 @@ const visualMoments = [
   {
     title: 'Cuidado preventivo',
     copy: 'Revisión, vacunas y orientación para que vivan mejor.',
-    image: photos.vet,
+    image: photos.momentCare,
     alt: 'Mascota en consulta veterinaria',
     Icon: Stethoscope,
     color: 'bg-[#dbf7ff] text-[#036b85]',
@@ -160,7 +187,7 @@ const visualMoments = [
   {
     title: 'Tienda con personalidad',
     copy: 'Accesorios, detalles y productos que hacen más feliz su rutina.',
-    image: photos.accessories,
+    image: photos.momentStore,
     alt: 'Perro con accesorio colorido',
     Icon: ShoppingBag,
     color: 'bg-[#e6e1ff] text-[#5536a8]',
@@ -168,7 +195,7 @@ const visualMoments = [
   {
     title: 'Higiene y estilo',
     copy: 'Baño, limpieza y cuidado para sentirse cómodos.',
-    image: photos.playful,
+    image: photos.momentGrooming,
     alt: 'Perro pequeño sobre fondo amarillo',
     Icon: Scissors,
     color: 'bg-[#fff0bd] text-[#9a5b00]',
@@ -177,26 +204,26 @@ const visualMoments = [
 
 const sliderImages = [
   {
-    image: photos.vet,
+    image: photos.galleryCare,
     alt: 'Mascota recibiendo atención veterinaria',
     title: 'Veterinaria cercana',
     copy: 'Cuidado preventivo y acompañamiento para cada etapa.',
   },
   {
-    image: photos.accessories,
+    image: photos.galleryStore,
     alt: 'Perro con accesorio colorido',
     title: 'Tienda para consentirlos',
     copy: 'Accesorios, alimento y detalles para su rutina diaria.',
   },
   {
-    image: photos.playful,
+    image: photos.galleryJoy,
     alt: 'Perro pequeño sobre fondo amarillo',
     title: 'Higiene y bienestar',
     copy: 'Una experiencia más cálida, alegre y cómoda.',
   },
   {
-    image: photos.hero,
-    alt: 'Perro y gato juntos en casa',
+    image: photos.galleryCat,
+    alt: 'Gato descansando en casa',
     title: 'Todo para tu manada',
     copy: 'Servicios y productos en un mismo lugar.',
   },
@@ -231,7 +258,7 @@ function CtaButtons() {
         href={mapsUrl}
         target="_blank"
         rel="noreferrer"
-        className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/55 bg-white/18 px-7 text-base font-black text-white transition hover:bg-white/28 focus:outline-none focus:ring-4 focus:ring-white/35"
+        className="inline-flex min-h-12 items-center justify-center rounded-full bg-white px-7 text-base font-black text-[#073b75] shadow-[0_14px_30px_rgba(7,59,117,0.18)] transition hover:bg-[#eef9f6] focus:outline-none focus:ring-4 focus:ring-white/45"
       >
         <MapPin aria-hidden="true" className="mr-2 h-5 w-5" />
         Conoce nuestra tienda
@@ -288,7 +315,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <section id="inicio" className="relative overflow-hidden bg-[#073b75] text-white">
+      <section id="inicio" className="relative overflow-hidden bg-[#eaf7ee] text-white">
         {heroSlides.map((slide, index) => (
           <div
             key={slide.title}
@@ -300,17 +327,18 @@ export default function Home() {
               alt=""
               aria-hidden="true"
               fetchPriority={index === 0 ? 'high' : 'auto'}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover saturate-[1.16]"
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-[#052e5b]/72" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#073b75]/60 via-[#073b75]/62 to-[#052f5c]/82" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#073b75]/30 via-[#0b7f78]/15 to-[#052f5c]/38" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#052f5c]/48 via-transparent to-white/10" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#f7fbf5] to-transparent" />
         <div className="absolute left-0 top-0 h-3 w-full bg-[#ff8a1d]" />
         <div className="absolute bottom-0 left-0 h-3 w-full bg-[#78bd2f]" />
         <div className="relative mx-auto min-h-[680px] max-w-7xl px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
           <div className="mx-auto flex min-h-[560px] max-w-5xl flex-col items-center justify-center text-center">
-            <p className="text-base font-light text-white/88 sm:text-lg">
+            <p className="text-base font-light text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.38)] sm:text-lg">
               Veterinaria y tienda para mascotas en Tijuana
             </p>
             <h1 className="sr-only">Todo para su bienestar, en un solo lugar.</h1>
@@ -321,10 +349,10 @@ export default function Home() {
                   className="hero-copy-slide absolute inset-0 flex flex-col items-center justify-center"
                   style={{ animationDelay: `${index * 5}s` }}
                 >
-                  <p className="max-w-4xl text-5xl font-black leading-none text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.35)] sm:text-6xl lg:text-7xl">
+                  <p className="max-w-4xl text-5xl font-black leading-none text-white drop-shadow-[0_12px_26px_rgba(0,0,0,0.42)] sm:text-6xl lg:text-7xl">
                     {slide.title}
                   </p>
-                  <p className="mt-6 max-w-3xl text-lg leading-8 text-[#eef9f6] drop-shadow-[0_8px_18px_rgba(0,0,0,0.3)] sm:text-xl">
+                  <p className="mt-6 max-w-3xl text-lg leading-8 text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.38)] sm:text-xl">
                     {slide.copy}
                   </p>
                 </div>
@@ -352,7 +380,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-          <div className="la-manada-slider relative min-h-[430px] overflow-hidden rounded-lg border border-[#d7ebe4] bg-[#073b75] shadow-[0_24px_70px_rgba(7,59,117,0.18)] sm:min-h-[560px]">
+          <div className="la-manada-slider relative min-h-[430px] overflow-hidden rounded-lg border border-[#d7ebe4] bg-white shadow-[0_24px_70px_rgba(7,59,117,0.18)] sm:min-h-[560px]">
             {sliderImages.map((item, index) => (
               <figure
                 key={item.title}
@@ -366,12 +394,12 @@ export default function Home() {
                   loading={index === 0 ? 'eager' : 'lazy'}
                   decoding="async"
                 />
-                <figcaption className="absolute inset-x-0 bottom-0 bg-[#073b75]/88 p-5 text-white backdrop-blur sm:p-7">
+                <figcaption className="absolute inset-x-4 bottom-4 rounded-lg bg-white/90 p-5 text-[#073b75] shadow-[0_18px_42px_rgba(7,59,117,0.18)] backdrop-blur sm:inset-x-6 sm:bottom-6 sm:p-7">
                   <div className="flex max-w-3xl items-start gap-4">
                     <IconBubble Icon={PawPrint} className="bg-[#fff0bd] text-[#9a5b00]" />
                     <div>
                       <h3 className="text-2xl font-black sm:text-3xl">{item.title}</h3>
-                      <p className="mt-2 text-base leading-7 text-[#eef9f6] sm:text-lg">{item.copy}</p>
+                      <p className="mt-2 text-base leading-7 text-[#48636a] sm:text-lg">{item.copy}</p>
                     </div>
                   </div>
                 </figcaption>
@@ -485,7 +513,7 @@ export default function Home() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <img
-              src={photos.vet}
+              src={photos.serviceConsult}
               alt="Perro pequeño en revisión veterinaria"
               className="h-72 w-full rounded-lg object-cover shadow-[0_18px_42px_rgba(0,0,0,0.2)] sm:h-full"
               loading="lazy"
@@ -559,8 +587,8 @@ export default function Home() {
                 útiles en un mismo lugar.
               </p>
               <img
-                src={photos.playful}
-                alt="Perro pequeño con ropa colorida"
+                src={photos.about}
+                alt="Perro mirando a cámara"
                 className="mt-7 h-72 w-full rounded-lg object-cover shadow-sm"
                 loading="lazy"
                 decoding="async"
@@ -600,8 +628,8 @@ export default function Home() {
               </p>
             </div>
             <img
-              src={photos.accessories}
-              alt="Perro con accesorio sobre fondo azul"
+              src={photos.trust}
+              alt="Perro sentado en exterior"
               className="h-full min-h-80 rounded-lg object-cover shadow-sm"
               loading="lazy"
               decoding="async"
