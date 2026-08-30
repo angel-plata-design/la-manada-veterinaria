@@ -196,7 +196,7 @@ function CtaButtons() {
     <div className="flex flex-col gap-3 sm:flex-row">
       <a
         href={whatsappUrl}
-        className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#ff8a1d] px-7 text-base font-black text-white shadow-[0_14px_30px_rgba(255,138,29,0.32)] transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
+        className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#0b7f78] px-7 text-base font-black text-white shadow-[0_14px_30px_rgba(11,127,120,0.3)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
       >
         <MessageCircle aria-hidden="true" className="mr-2 h-5 w-5" />
         Agendar cita
@@ -254,7 +254,7 @@ export default function Home() {
           </div>
           <a
             href={whatsappUrl}
-            className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#ff8a1d] px-5 text-sm font-black text-white shadow-[0_10px_24px_rgba(255,138,29,0.28)] transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#0b7f78] px-5 text-sm font-black text-white shadow-[0_10px_24px_rgba(11,127,120,0.24)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
           >
             <MessageCircle aria-hidden="true" className="mr-2 h-4 w-4" />
             WhatsApp
@@ -280,9 +280,6 @@ export default function Home() {
           </div>
         ))}
         <div className="hero-readable-overlay absolute inset-0" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#f7fbf5] to-transparent" />
-        <div className="absolute left-0 top-0 h-3 w-full bg-[#ff8a1d]" />
-        <div className="absolute bottom-0 left-0 h-3 w-full bg-[#78bd2f]" />
         <div className="relative mx-auto min-h-[680px] max-w-7xl px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
           <div className="flex min-h-[560px] max-w-3xl flex-col items-start justify-center text-left">
             <p className="text-base font-light text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.55)] sm:text-lg">
