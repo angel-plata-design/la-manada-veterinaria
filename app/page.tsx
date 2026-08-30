@@ -46,24 +46,28 @@ const heroSlides = [
   {
     image: photos.heroFamily,
     alt: 'Perro y gato juntos en casa',
+    position: 'center 45%',
     title: 'Todo para su bienestar, en un solo lugar.',
     copy: 'Veterinaria, cuidado preventivo, estética, alimentos y accesorios para acompañarlos con cariño.',
   },
   {
     image: photos.heroCare,
     alt: 'Perro pequeño en revisión veterinaria',
+    position: 'center 42%',
     title: 'Cuidado cercano para cada integrante de tu manada.',
     copy: 'Consulta, prevención y orientación clara para que se sientan mejor.',
   },
   {
     image: photos.heroPlay,
     alt: 'Perros caminando juntos',
+    position: 'center 55%',
     title: 'Productos, accesorios y detalles que les encantan.',
     copy: 'Pregunta por disponibilidad y encuentra opciones para perros y gatos.',
   },
   {
     image: photos.heroCat,
     alt: 'Gato mirando a cámara',
+    position: 'center 44%',
     title: 'Veterinaria y tienda con más color y cariño.',
     copy: 'Una experiencia amable para ellos y práctica para ti.',
   },
@@ -271,31 +275,31 @@ export default function Home() {
               aria-hidden="true"
               fetchPriority={index === 0 ? 'high' : 'auto'}
               className="h-full w-full object-cover saturate-[1.16]"
+              style={{ animationDelay: `${index * 5}s`, objectPosition: slide.position }}
             />
           </div>
         ))}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#073b75]/30 via-[#0b7f78]/15 to-[#052f5c]/38" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#052f5c]/48 via-transparent to-white/10" />
+        <div className="hero-readable-overlay absolute inset-0" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#f7fbf5] to-transparent" />
         <div className="absolute left-0 top-0 h-3 w-full bg-[#ff8a1d]" />
         <div className="absolute bottom-0 left-0 h-3 w-full bg-[#78bd2f]" />
         <div className="relative mx-auto min-h-[680px] max-w-7xl px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
-          <div className="mx-auto flex min-h-[560px] max-w-5xl flex-col items-center justify-center text-center">
-            <p className="text-base font-light text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.38)] sm:text-lg">
+          <div className="flex min-h-[560px] max-w-3xl flex-col items-start justify-center text-left">
+            <p className="text-base font-light text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.55)] sm:text-lg">
               Veterinaria y tienda para mascotas en Tijuana
             </p>
             <h1 className="sr-only">Todo para su bienestar, en un solo lugar.</h1>
-            <div className="relative mt-6 min-h-[300px] w-full sm:min-h-[265px]" aria-hidden="true">
+            <div className="relative mt-6 min-h-[330px] w-full sm:min-h-[285px]" aria-hidden="true">
               {heroSlides.map((slide, index) => (
                 <div
                   key={slide.title}
-                  className="hero-copy-slide absolute inset-0 flex flex-col items-center justify-center"
+                  className="hero-copy-slide absolute inset-0 flex flex-col items-start justify-center"
                   style={{ animationDelay: `${index * 5}s` }}
                 >
-                  <p className="max-w-4xl text-5xl font-black leading-none text-white drop-shadow-[0_12px_26px_rgba(0,0,0,0.42)] sm:text-6xl lg:text-7xl">
+                  <p className="max-w-3xl text-5xl font-black leading-none text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-6xl lg:text-7xl">
                     {slide.title}
                   </p>
-                  <p className="mt-6 max-w-3xl text-lg leading-8 text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.38)] sm:text-xl">
+                  <p className="mt-6 max-w-2xl text-lg leading-8 text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.56)] sm:text-xl">
                     {slide.copy}
                   </p>
                 </div>
