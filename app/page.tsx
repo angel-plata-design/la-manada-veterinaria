@@ -60,15 +60,15 @@ const heroSlides = [
     image: photos.heroPlay,
     alt: 'Perros caminando juntos',
     position: 'center 55%',
-    title: 'Productos que sí les sirven.',
-    copy: 'Opciones útiles para perros y gatos.',
+    title: 'Tienda para perros y gatos.',
+    copy: 'Alimento, higiene y accesorios.',
   },
   {
     image: photos.heroCat,
     alt: 'Gato mirando a cámara',
     position: 'center 44%',
-    title: 'Color, cariño y confianza.',
-    copy: 'Amable para ellos y práctica para ti.',
+    title: 'Cuidado con confianza.',
+    copy: 'Trato amable para tu mascota.',
   },
 ];
 
