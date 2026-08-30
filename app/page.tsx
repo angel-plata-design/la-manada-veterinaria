@@ -265,9 +265,13 @@ export default function Home() {
             <img
               src="/la-manada-isotipo.png"
               alt="Isotipo de La Manada"
-              className="h-12 w-12 shrink-0 rounded-full bg-[#073b75] object-contain p-1"
+              className="h-12 w-12 shrink-0 rounded-full bg-[#073b75] object-contain p-1 sm:hidden"
             />
-            <span className="hidden text-lg font-black text-[#073b75] sm:block">LA MANADA</span>
+            <img
+              src="/la-manada-logo-solo.png"
+              alt="La Manada"
+              className="hidden h-11 w-auto max-w-[210px] shrink-0 object-contain sm:block lg:h-12 lg:max-w-[240px]"
+            />
           </a>
           <div className="hidden items-center gap-6 text-sm font-bold text-[#16445a] md:flex">
             {navLinks.map((link) => (
@@ -606,9 +610,9 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 md:grid-cols-[1fr_auto] lg:px-10">
           <div>
             <img
-              src="/la-manada-logo.png"
+              src="/la-manada-logo-solo.png"
               alt="La Manada"
-              className="w-72 rounded-lg bg-[#073b75] p-3"
+              className="w-80 max-w-full"
             />
             <p className="mt-5 max-w-2xl leading-7 text-[#48636a]">
               Veterinaria, estética y tienda para mascotas. #LosQueremosTantoComoTú
