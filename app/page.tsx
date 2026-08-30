@@ -46,28 +46,28 @@ const heroSlides = [
     image: photos.heroFamily,
     alt: 'Perro y gato juntos en casa',
     position: 'center 45%',
-    title: 'Todo para su bienestar, en un solo lugar.',
-    copy: 'Veterinaria, estética, alimentos y accesorios con trato cercano.',
+    title: 'Bienestar en un solo lugar.',
+    copy: 'Veterinaria, estética, alimento y accesorios.',
   },
   {
     image: photos.heroCare,
     alt: 'Perro pequeño en revisión veterinaria',
     position: 'center 42%',
-    title: 'Cuidado cercano para cada integrante de tu manada.',
+    title: 'Cuidado cercano para tu mascota.',
     copy: 'Consulta, prevención y orientación clara.',
   },
   {
     image: photos.heroPlay,
     alt: 'Perros caminando juntos',
     position: 'center 55%',
-    title: 'Productos, accesorios y detalles que les encantan.',
+    title: 'Productos que sí les sirven.',
     copy: 'Opciones útiles para perros y gatos.',
   },
   {
     image: photos.heroCat,
     alt: 'Gato mirando a cámara',
     position: 'center 44%',
-    title: 'Veterinaria y tienda con más color y cariño.',
+    title: 'Color, cariño y confianza.',
     copy: 'Amable para ellos y práctica para ti.',
   },
 ];
@@ -273,20 +273,20 @@ export default function Home() {
           </div>
         ))}
         <div className="hero-readable-overlay absolute inset-0" />
-        <div className="relative mx-auto min-h-[610px] max-w-7xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
-          <div className="flex min-h-[500px] max-w-3xl flex-col items-start justify-center text-left">
+        <div className="relative mx-auto min-h-[560px] max-w-7xl px-5 py-10 sm:px-8 lg:px-10 lg:py-14">
+          <div className="flex min-h-[460px] max-w-3xl flex-col items-start justify-center text-left">
             <p className="text-base font-light text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.55)] sm:text-lg">
               Veterinaria y tienda para mascotas en Tijuana
             </p>
             <h1 className="sr-only">Todo para su bienestar, en un solo lugar.</h1>
-            <div className="relative mt-5 min-h-[285px] w-full sm:min-h-[245px]" aria-hidden="true">
+            <div className="relative mt-5 min-h-[220px] w-full sm:min-h-[230px]" aria-hidden="true">
               {heroSlides.map((slide, index) => (
                 <div
                   key={slide.title}
                   className="hero-copy-slide absolute inset-0 flex flex-col items-start justify-center"
                   style={{ animationDelay: `${index * 5}s` }}
                 >
-                  <p className="max-w-3xl text-5xl font-black leading-none text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-6xl lg:text-7xl">
+                  <p className="max-w-3xl text-5xl font-black leading-[0.96] text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-6xl lg:text-7xl">
                     {slide.title}
                   </p>
                   <p className="mt-5 max-w-2xl text-lg leading-8 text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.56)] sm:text-xl">

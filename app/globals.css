@@ -45,17 +45,17 @@ body {
 .hero-bg-slide,
 .hero-copy-slide {
   opacity: 0;
-  animation: hero-fade 20s infinite both;
+  animation: hero-fade 20s infinite;
 }
 
 .hero-bg-slide img {
   transform: scale(1.03);
-  animation: hero-image 20s infinite both;
+  animation: hero-image 20s infinite;
 }
 
 .hero-copy-slide {
   transform: translateY(12px);
-  animation: hero-copy 20s infinite both;
+  animation: hero-copy 20s infinite;
 }
 
 @keyframes hero-fade {
@@ -72,12 +72,12 @@ body {
 
 @keyframes hero-copy {
   0%,
-  20% {
+  18% {
     opacity: 1;
     transform: translateY(0);
   }
 
-  26%,
+  22%,
   100% {
     opacity: 0;
     transform: translateY(-8px);
