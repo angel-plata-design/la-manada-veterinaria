@@ -36,14 +36,10 @@ const navLinks = [
 ];
 
 const photos = {
-  heroFamily:
-    'https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&q=82&w=2200',
-  heroCare:
-    'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&q=82&w=2200',
-  heroPlay:
-    'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=82&w=2200',
-  heroCat:
-    'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&q=82&w=2200',
+  heroFamily: '/hero-perro-gato.webp',
+  heroCare: '/hero-perro-chico.webp',
+  heroPlay: '/hero-perro.webp',
+  heroCat: '/hero-gato.webp',
   serviceConsult: 'https://unsplash.com/photos/u2H8mUzoF2Q/download?force=true&w=1400',
   shop:
     'https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?auto=format&fit=crop&q=80&w=1600',
@@ -55,28 +51,28 @@ const heroSlides = [
   {
     image: photos.heroFamily,
     alt: 'Perro y gato juntos en casa',
-    position: 'center 45%',
+    position: 'center center',
     title: 'Bienestar en un solo lugar.',
     copy: 'Veterinaria, estética, alimento y accesorios.',
   },
   {
     image: photos.heroCare,
     alt: 'Perro pequeño en revisión veterinaria',
-    position: 'center 42%',
+    position: 'center center',
     title: 'Cuidado cercano para tu mascota.',
     copy: 'Consulta, prevención y orientación clara.',
   },
   {
     image: photos.heroPlay,
     alt: 'Perros caminando juntos',
-    position: 'center 55%',
+    position: 'center center',
     title: 'Tienda para perros y gatos.',
     copy: 'Alimento, higiene y accesorios.',
   },
   {
     image: photos.heroCat,
     alt: 'Gato mirando a cámara',
-    position: 'center 44%',
+    position: 'center center',
     title: 'Cuidado con confianza.',
     copy: 'Trato amable para tu mascota.',
   },
