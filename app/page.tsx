@@ -8,7 +8,6 @@ import {
   HeartPulse,
   MapPin,
   MessageCircle,
-  PackageCheck,
   PawPrint,
   Scissors,
   ShieldCheck,
@@ -16,7 +15,6 @@ import {
   Sparkles,
   Star,
   Stethoscope,
-  Store,
   Syringe,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
@@ -38,30 +36,10 @@ const photos = {
   heroCat:
     'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?auto=format&fit=crop&q=82&w=2200',
   serviceConsult: 'https://unsplash.com/photos/u2H8mUzoF2Q/download?force=true&w=1400',
-  servicePrevention:
-    'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?auto=format&fit=crop&q=80&w=1400',
-  serviceGrooming:
-    'https://images.unsplash.com/photo-1560743641-3914f2c45636?auto=format&fit=crop&q=80&w=1400',
-  serviceStore: 'https://unsplash.com/photos/oU6KZTXhuvk/download?force=true&w=1400',
-  galleryCare:
-    'https://images.unsplash.com/photo-1601758174114-e711c0cbaa69?auto=format&fit=crop&q=80&w=1800',
-  galleryStore:
-    'https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?auto=format&fit=crop&q=80&w=1800',
-  galleryJoy:
-    'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&q=80&w=1800',
-  galleryCat:
-    'https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&q=80&w=1800',
-  momentCare:
-    'https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=1400',
-  momentStore:
-    'https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&q=80&w=1400',
-  momentGrooming:
-    'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&q=80&w=1400',
-  food: 'https://unsplash.com/photos/zxqaAkkayP8/download?force=true&w=1400',
+  shop:
+    'https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?auto=format&fit=crop&q=80&w=1600',
   about:
     'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&q=80&w=1400',
-  trust:
-    'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&q=80&w=1400',
 };
 
 const heroSlides = [
@@ -104,48 +82,64 @@ const highlights = [
   { value: 'Tijuana', label: 'Urbiquinta Del Cedro', Icon: MapPin, color: 'bg-[#e4ecff] text-[#073b75]' },
 ];
 
-const services = [
+const services: IconCard[] = [
   {
     title: 'Consulta veterinaria',
     copy: 'Evaluación profesional, orientación y seguimiento para cuidar el bienestar de tu mascota.',
-    image: photos.serviceConsult,
-    alt: 'Perro pequeño en una revisión veterinaria',
     Icon: Stethoscope,
     color: 'bg-[#dbf7ff] text-[#036b85]',
   },
   {
     title: 'Vacunación y prevención',
     copy: 'Cuidado preventivo para perros y gatos, con recomendaciones claras para casa.',
-    image: photos.servicePrevention,
-    alt: 'Perro y gato conviviendo en casa',
     Icon: Syringe,
     color: 'bg-[#ffe2dd] text-[#b42318]',
   },
   {
     title: 'Estética e higiene',
     copy: 'Baños, limpieza y soluciones de cuidado para que se sientan cómodos.',
-    image: photos.serviceGrooming,
-    alt: 'Perrito pequeño con fondo amarillo',
-    Icon: Sparkles,
+    Icon: Scissors,
     color: 'bg-[#fff0bd] text-[#9a5b00]',
-  },
-  {
-    title: 'Tienda para mascotas',
-    copy: 'Alimentos, premios, accesorios y productos de bienestar en el mismo lugar.',
-    image: photos.serviceStore,
-    alt: 'Perro con ropa colorida sobre fondo azul',
-    Icon: Store,
-    color: 'bg-[#e6e1ff] text-[#5536a8]',
   },
 ];
 
 const storeCategories = [
-  { title: 'Alimentos', Icon: Bone, color: 'bg-[#fff3c4] text-[#8a5800]' },
-  { title: 'Premios', Icon: Dog, color: 'bg-[#dff8da] text-[#27780e]' },
-  { title: 'Higiene y cuidado', Icon: Sparkles, color: 'bg-[#d9f7ff] text-[#036b85]' },
-  { title: 'Accesorios', Icon: ShoppingBag, color: 'bg-[#ffe2dd] text-[#b42318]' },
-  { title: 'Gatos', Icon: Cat, color: 'bg-[#e6e1ff] text-[#5536a8]' },
-  { title: 'Bienestar', Icon: HeartPulse, color: 'bg-[#e1f7ea] text-[#0b7f50]' },
+  {
+    title: 'Alimentos',
+    copy: 'Opciones para su rutina diaria.',
+    Icon: Bone,
+    color: 'bg-[#fff3c4] text-[#8a5800]',
+  },
+  {
+    title: 'Premios',
+    copy: 'Detalles para consentirlos.',
+    Icon: Dog,
+    color: 'bg-[#dff8da] text-[#27780e]',
+  },
+  {
+    title: 'Higiene',
+    copy: 'Baño, limpieza y cuidado.',
+    Icon: Sparkles,
+    color: 'bg-[#d9f7ff] text-[#036b85]',
+  },
+  {
+    title: 'Accesorios',
+    copy: 'Correas, juguetes y más.',
+    Icon: ShoppingBag,
+    color: 'bg-[#ffe2dd] text-[#b42318]',
+  },
+  {
+    title: 'Gatos',
+    copy: 'Productos pensados para ellos.',
+    Icon: Cat,
+    color: 'bg-[#e6e1ff] text-[#5536a8]',
+  },
+  {
+    title: 'Bienestar',
+    copy: 'Apoyo para sentirse mejor.',
+    Icon: HeartPulse,
+    color: 'bg-[#e1f7ea] text-[#0b7f50]',
+  },
 ];
 
 const reasons: IconCard[] = [
@@ -164,7 +158,7 @@ const reasons: IconCard[] = [
   {
     title: 'Todo en un lugar',
     copy: 'Veterinaria, estética, alimento, higiene y accesorios sin complicarte.',
-    Icon: PackageCheck,
+    Icon: ShoppingBag,
     color: 'bg-[#fff0bd] text-[#9a5b00]',
   },
   {
@@ -175,72 +169,21 @@ const reasons: IconCard[] = [
   },
 ];
 
-const visualMoments = [
+const careSteps = [
   {
-    title: 'Cuidado preventivo',
-    copy: 'Revisión, vacunas y orientación para que vivan mejor.',
-    image: photos.momentCare,
-    alt: 'Mascota en consulta veterinaria',
-    Icon: Stethoscope,
-    color: 'bg-[#dbf7ff] text-[#036b85]',
+    title: 'Escríbenos',
+    copy: 'Cuéntanos qué necesita tu mascota y si buscas consulta, estética o producto.',
+    Icon: MessageCircle,
   },
   {
-    title: 'Tienda con personalidad',
-    copy: 'Accesorios, detalles y productos que hacen más feliz su rutina.',
-    image: photos.momentStore,
-    alt: 'Perro con accesorio colorido',
-    Icon: ShoppingBag,
-    color: 'bg-[#e6e1ff] text-[#5536a8]',
+    title: 'Te orientamos',
+    copy: 'Recibes una respuesta clara para agendar o revisar disponibilidad antes de ir.',
+    Icon: HeartHandshake,
   },
   {
-    title: 'Higiene y estilo',
-    copy: 'Baño, limpieza y cuidado para sentirse cómodos.',
-    image: photos.momentGrooming,
-    alt: 'Perro pequeño sobre fondo amarillo',
-    Icon: Scissors,
-    color: 'bg-[#fff0bd] text-[#9a5b00]',
-  },
-];
-
-const sliderImages = [
-  {
-    image: photos.galleryCare,
-    alt: 'Mascota recibiendo atención veterinaria',
-    title: 'Veterinaria cercana',
-    copy: 'Cuidado preventivo y acompañamiento para cada etapa.',
-  },
-  {
-    image: photos.galleryStore,
-    alt: 'Perro con accesorio colorido',
-    title: 'Tienda para consentirlos',
-    copy: 'Accesorios, alimento y detalles para su rutina diaria.',
-  },
-  {
-    image: photos.galleryJoy,
-    alt: 'Perro pequeño sobre fondo amarillo',
-    title: 'Higiene y bienestar',
-    copy: 'Una experiencia más cálida, alegre y cómoda.',
-  },
-  {
-    image: photos.galleryCat,
-    alt: 'Gato descansando en casa',
-    title: 'Todo para tu manada',
-    copy: 'Servicios y productos en un mismo lugar.',
-  },
-];
-
-const faqs = [
-  {
-    q: '¿Puedo agendar por WhatsApp?',
-    a: 'Sí. El acceso principal de la página lleva directo al WhatsApp de La Manada para pedir cita o consultar productos.',
-  },
-  {
-    q: '¿Venden productos para perros y gatos?',
-    a: 'Sí. La tienda se presenta como catálogo consultivo de alimentos, higiene, premios y accesorios.',
-  },
-  {
-    q: '¿El horario ya está confirmado?',
-    a: 'Hay horarios publicados en directorios, pero varían entre fuentes. Por eso la página invita a confirmar por WhatsApp antes de visitar.',
+    title: 'Llegas con confianza',
+    copy: 'El objetivo es que la visita sea simple, cálida y útil desde el primer contacto.',
+    Icon: ShieldCheck,
   },
 ];
 
@@ -365,54 +308,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section aria-label="Galería de La Manada" className="bg-[#f7fbf5] px-5 py-10 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-5 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
-            <div>
-              <p className="text-sm font-black uppercase text-[#0b7f78]">Galería</p>
-              <h2 className="mt-2 text-3xl font-black text-[#073b75] sm:text-4xl">
-                Una mirada bonita a lo que vive tu manada.
-              </h2>
-            </div>
-            <div className="flex gap-2" aria-hidden="true">
-              {sliderImages.map((item) => (
-                <span key={item.title} className="h-2.5 w-10 rounded-full bg-[#ff8a1d]" />
-              ))}
-            </div>
-          </div>
-          <div className="la-manada-slider relative min-h-[430px] overflow-hidden rounded-lg border border-[#d7ebe4] bg-white shadow-[0_24px_70px_rgba(7,59,117,0.18)] sm:min-h-[560px]">
-            {sliderImages.map((item, index) => (
-              <figure
-                key={item.title}
-                className="la-manada-slide absolute inset-0"
-                style={{ animationDelay: `${index * 5}s` }}
-              >
-                <img
-                  src={item.image}
-                  alt={item.alt}
-                  className="h-full w-full object-cover"
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                />
-                <figcaption className="absolute inset-x-4 bottom-4 rounded-lg bg-white/90 p-5 text-[#073b75] shadow-[0_18px_42px_rgba(7,59,117,0.18)] backdrop-blur sm:inset-x-6 sm:bottom-6 sm:p-7">
-                  <div className="flex max-w-3xl items-start gap-4">
-                    <IconBubble Icon={PawPrint} className="bg-[#fff0bd] text-[#9a5b00]" />
-                    <div>
-                      <h3 className="text-2xl font-black sm:text-3xl">{item.title}</h3>
-                      <p className="mt-2 text-base leading-7 text-[#48636a] sm:text-lg">{item.copy}</p>
-                    </div>
-                  </div>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#f7fbf5]">
-        <div className="mx-auto grid max-w-7xl gap-4 px-5 py-7 sm:px-8 md:grid-cols-3 lg:px-10">
+      <section className="border-y border-[#d7ebe4] bg-white">
+        <div className="mx-auto grid max-w-7xl divide-y divide-[#d7ebe4] px-5 sm:px-8 md:grid-cols-3 md:divide-x md:divide-y-0 lg:px-10">
           {highlights.map(({ value, label, Icon, color }) => (
-            <div key={label} className="flex items-center gap-4 rounded-lg border border-[#d7ebe4] bg-white p-5 shadow-sm">
+            <div key={label} className="flex items-center gap-4 py-5 md:justify-center">
               <IconBubble Icon={Icon} className={color} />
               <div>
                 <p className="text-3xl font-black text-[#073b75]">{value}</p>
@@ -423,71 +322,61 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-          <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase text-[#0b7f78]">Experiencia La Manada</p>
-            <h2 className="mt-3 text-4xl font-black text-[#073b75] sm:text-5xl">
-              Más color, más confianza y más cariño en cada visita.
-            </h2>
+      <section id="veterinaria" className="bg-[#f7fbf5] py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
+          <div className="relative min-h-[420px] overflow-hidden rounded-lg bg-[#073b75] shadow-[0_24px_70px_rgba(7,59,117,0.16)]">
+            <img
+              src={photos.serviceConsult}
+              alt="Perro pequeño en revisión veterinaria"
+              className="h-full min-h-[420px] w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#073b75]/78 via-transparent to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 text-white">
+              <p className="text-sm font-black uppercase text-[#98ead7]">Veterinaria</p>
+              <h2 className="mt-2 text-3xl font-black sm:text-4xl">Cuidado claro, cercano y preventivo.</h2>
+            </div>
           </div>
-          <div className="mt-9 grid gap-5 lg:grid-cols-3">
-            {visualMoments.map(({ title, copy, image, alt, Icon, color }) => (
-              <article key={title} className="overflow-hidden rounded-lg border border-[#dcece7] bg-[#fbfdf9] shadow-sm">
-                <img src={image} alt={alt} className="h-64 w-full object-cover" loading="lazy" decoding="async" />
-                <div className="p-6">
-                  <IconBubble Icon={Icon} className={color} />
-                  <h3 className="mt-4 text-2xl font-black text-[#073b75]">{title}</h3>
-                  <p className="mt-3 leading-7 text-[#48636a]">{copy}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="veterinaria" className="bg-[#eaf7ee] py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-          <div className="max-w-3xl">
+          <div className="flex flex-col justify-center">
             <p className="text-sm font-black uppercase text-[#0b7f78]">Servicios</p>
             <h2 className="mt-3 text-4xl font-black text-[#073b75] sm:text-5xl">
               Cuidamos a cada integrante de tu manada.
             </h2>
             <p className="mt-5 text-lg leading-8 text-[#48636a]">
-              Salud, higiene, tienda y acompañamiento cercano, con una experiencia más cálida desde el primer contacto.
+              Aquí la veterinaria se presenta como atención y prevención. La tienda tiene su propio espacio más abajo para no mezclar mensajes.
             </p>
-          </div>
-          <div className="mt-9 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-            {services.map(({ title, copy, image, alt, Icon, color }) => (
-              <article key={title} className="overflow-hidden rounded-lg border border-[#d0e8dd] bg-white shadow-sm">
-                <img src={image} alt={alt} className="h-44 w-full object-cover" loading="lazy" decoding="async" />
-                <div className="p-6">
+            <div className="mt-8 divide-y divide-[#cfe5de] border-y border-[#cfe5de]">
+              {services.map(({ title, copy, Icon, color }) => (
+                <article key={title} className="grid gap-4 py-6 sm:grid-cols-[auto_1fr_auto] sm:items-center">
                   <IconBubble Icon={Icon} className={color} />
-                  <h3 className="mt-4 text-xl font-black text-[#073b75]">{title}</h3>
-                  <p className="mt-3 leading-7 text-[#48636a]">{copy}</p>
+                  <div>
+                    <h3 className="text-2xl font-black text-[#073b75]">{title}</h3>
+                    <p className="mt-2 leading-7 text-[#48636a]">{copy}</p>
+                  </div>
                   <a
                     href={whatsappUrl}
-                    className="mt-5 inline-flex min-h-11 items-center font-black text-[#0b7f78] transition hover:text-[#073b75] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                    className="inline-flex min-h-11 w-fit items-center rounded-full bg-[#e6faf5] px-5 font-black text-[#0b7f78] transition hover:bg-[#d0f5ec] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
                   >
                     <MessageCircle aria-hidden="true" className="mr-2 h-5 w-5" />
-                    Conocer más
+                    Preguntar
                   </a>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <section className="bg-[#073b75] py-16 text-white sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.92fr_1.08fr] lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:px-10">
           <div className="flex flex-col justify-center">
             <p className="text-sm font-black uppercase text-[#98ead7]">Veterinaria</p>
             <h2 className="mt-3 text-4xl font-black sm:text-5xl">
               Su salud también es parte de nuestro vínculo.
             </h2>
             <p className="mt-5 text-lg leading-8 text-[#dceee9]">
-              En La Manada el cuidado se comunica de forma cálida: atención profesional,
+              El cuidado se comunica de forma cálida: atención profesional,
               orientación para casa y seguimiento cuando tu mascota lo necesita.
             </p>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -511,72 +400,94 @@ export default function Home() {
               Agenda una consulta
             </a>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <img
-              src={photos.serviceConsult}
-              alt="Perro pequeño en revisión veterinaria"
-              className="h-72 w-full rounded-lg object-cover shadow-[0_18px_42px_rgba(0,0,0,0.2)] sm:h-full"
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="grid gap-4">
-              <div className="rounded-lg bg-[#fff0bd] p-6 text-[#073b75]">
-                <IconBubble Icon={PawPrint} className="bg-white text-[#ff8a1d]" />
-                <h3 className="mt-4 text-2xl font-black">Los queremos tanto como tú</h3>
-              </div>
-              <img
-                src="/la-manada-isotipo.png"
-                alt="Isotipo de La Manada con perro, gato, pez y ave"
-                className="rounded-lg bg-white p-8 shadow-[0_18px_42px_rgba(0,0,0,0.16)]"
-                loading="lazy"
-                decoding="async"
-              />
+          <div className="rounded-lg border border-white/18 bg-white/10 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.14)] sm:p-8">
+            <p className="text-sm font-black uppercase text-[#fff0bd]">Así funciona</p>
+            <div className="mt-6 space-y-6">
+              {careSteps.map(({ title, copy, Icon }, index) => (
+                <div key={title} className="grid gap-4 border-b border-white/16 pb-6 last:border-0 last:pb-0 sm:grid-cols-[auto_1fr]">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-lg font-black text-[#073b75]">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <div className="flex items-center gap-3">
+                      <Icon aria-hidden="true" className="h-5 w-5 text-[#98ead7]" />
+                      <h3 className="text-2xl font-black">{title}</h3>
+                    </div>
+                    <p className="mt-2 leading-7 text-[#dceee9]">{copy}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section id="tienda" className="bg-white py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:px-10">
+      <section id="tienda" className="bg-[#fff7e8] py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.92fr] lg:px-10">
           <div>
-            <p className="text-sm font-black uppercase text-[#0b7f78]">Tienda</p>
+            <p className="text-sm font-black uppercase text-[#c65b00]">Tienda</p>
             <h2 className="mt-3 text-4xl font-black text-[#073b75] sm:text-5xl">
-              Todo lo que necesitan. Y algunas cosas que les van a encantar.
+              Un espacio para resolver la rutina de perros y gatos.
             </h2>
-            <p className="mt-5 max-w-xl text-lg leading-8 text-[#48636a]">
-              Elige por categoría y escríbenos por WhatsApp para confirmar disponibilidad o pedir orientación.
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-[#5f4b32]">
+              Aquí el enfoque cambia: productos, disponibilidad y orientación rápida para que encuentres lo que sí les sirve.
             </p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {storeCategories.map(({ title, copy, Icon, color }) => (
+                <div
+                  key={title}
+                  className="flex min-h-24 items-center gap-4 rounded-lg border-2 border-white bg-white/82 p-4 shadow-[0_10px_28px_rgba(198,91,0,0.08)]"
+                >
+                  <IconBubble Icon={Icon} className={color} />
+                  <div>
+                    <h3 className="text-xl font-black text-[#073b75]">{title}</h3>
+                    <p className="mt-1 leading-6 text-[#6a5b45]">{copy}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <a
+              href={whatsappUrl}
+              className="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-[#ff8a1d] px-7 text-base font-black text-white shadow-[0_14px_30px_rgba(255,138,29,0.22)] transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
+            >
+              <ShoppingBag aria-hidden="true" className="mr-2 h-5 w-5" />
+              Consultar productos
+            </a>
+          </div>
+          <div className="relative overflow-hidden rounded-lg bg-white shadow-[0_24px_60px_rgba(198,91,0,0.16)]">
             <img
-              src={photos.food}
-              alt="Croquetas en un plato para mascota"
-              className="mt-7 h-64 w-full rounded-lg object-cover shadow-sm"
+              src={photos.shop}
+              alt="Perro junto a productos para mascotas"
+              className="h-full min-h-[460px] w-full object-cover"
               loading="lazy"
               decoding="async"
             />
-            <a
-              href={whatsappUrl}
-              className="mt-7 inline-flex min-h-12 items-center justify-center rounded-full bg-[#073b75] px-7 text-base font-black text-white transition hover:bg-[#0b4f91] focus:outline-none focus:ring-4 focus:ring-[#9fc7e8]"
-            >
-              <ShoppingBag aria-hidden="true" className="mr-2 h-5 w-5" />
-              Consultar disponibilidad
-            </a>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {storeCategories.map(({ title, Icon, color }) => (
-              <div key={title} className="min-h-40 rounded-lg border border-[#dcece7] bg-[#fbfdf9] p-6 shadow-sm">
-                <IconBubble Icon={Icon} className={color} />
-                <h3 className="mt-5 text-2xl font-black text-[#073b75]">{title}</h3>
-                <p className="mt-2 leading-7 text-[#48636a]">Pregunta por opciones disponibles en sucursal.</p>
+            <div className="absolute inset-x-5 bottom-5 rounded-lg bg-white/92 p-5 text-[#073b75] shadow-[0_18px_38px_rgba(7,59,117,0.14)] backdrop-blur">
+              <div className="flex items-center gap-3">
+                <IconBubble Icon={Bone} className="bg-[#fff3c4] text-[#8a5800]" />
+                <div>
+                  <p className="text-sm font-black uppercase text-[#c65b00]">Sucursal</p>
+                  <p className="text-2xl font-black">Compra con ayuda, no a ciegas.</p>
+                </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
       <section id="nosotros" className="bg-[#f7fbf5] py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
+          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
+            <div className="overflow-hidden rounded-lg bg-white shadow-[0_18px_46px_rgba(7,59,117,0.1)]">
+              <img
+                src={photos.about}
+                alt="Perro mirando a cámara"
+                className="h-80 w-full object-cover sm:h-full"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="flex flex-col justify-center">
               <p className="text-sm font-black uppercase text-[#0b7f78]">Por qué La Manada</p>
               <h2 className="mt-3 text-4xl font-black text-[#073b75] sm:text-5xl">
                 Los queremos tanto como tú.
@@ -586,54 +497,28 @@ export default function Home() {
                 confianza, cercanía y la tranquilidad de encontrar cuidado y productos
                 útiles en un mismo lugar.
               </p>
-              <img
-                src={photos.about}
-                alt="Perro mirando a cámara"
-                className="mt-7 h-72 w-full rounded-lg object-cover shadow-sm"
-                loading="lazy"
-                decoding="async"
-              />
+              <div className="mt-8 grid gap-5">
+                {reasons.map(({ title, copy, Icon, color }) => (
+                  <article key={title} className="grid gap-4 sm:grid-cols-[auto_1fr]">
+                    <IconBubble Icon={Icon} className={color} />
+                    <div>
+                      <h3 className="text-xl font-black text-[#073b75]">{title}</h3>
+                      <p className="mt-2 leading-7 text-[#48636a]">{copy}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <div className="mt-8 flex flex-col gap-3 border-t border-[#d7ebe4] pt-6 sm:flex-row">
+                <div className="flex items-center gap-3 rounded-full bg-white px-5 py-3 font-black text-[#073b75] shadow-sm">
+                  <Star aria-hidden="true" className="h-5 w-5 fill-[#ffcf36] text-[#ffcf36]" />
+                  4.5+ valoración pública
+                </div>
+                <div className="flex items-center gap-3 rounded-full bg-white px-5 py-3 font-black text-[#073b75] shadow-sm">
+                  <PawPrint aria-hidden="true" className="h-5 w-5 text-[#0b7f78]" />
+                  100+ reseñas reportadas
+                </div>
+              </div>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {reasons.map(({ title, copy, Icon, color }) => (
-                <article key={title} className="rounded-lg border border-[#dcece7] bg-white p-6 shadow-sm">
-                  <IconBubble Icon={Icon} className={color} />
-                  <h3 className="mt-4 text-xl font-black text-[#073b75]">{title}</h3>
-                  <p className="mt-3 leading-7 text-[#48636a]">{copy}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 sm:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:px-10">
-          <div>
-            <p className="text-sm font-black uppercase text-[#0b7f78]">Confianza</p>
-            <h2 className="mt-3 text-4xl font-black text-[#073b75] sm:text-5xl">
-              Ellos ya son parte de La Manada.
-            </h2>
-            <p className="mt-5 text-lg leading-8 text-[#48636a]">
-              La página queda preparada para integrar reseñas reales de Facebook o Google cuando el negocio las seleccione.
-            </p>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-[0.85fr_1.15fr]">
-            <div className="rounded-lg border border-[#dcece7] bg-[#fbfdf9] p-7 sm:p-10">
-              <Star aria-hidden="true" className="h-12 w-12 fill-[#ffcf36] text-[#ffcf36]" />
-              <p className="mt-4 text-6xl font-black text-[#ff8a1d]">4.5+</p>
-              <h3 className="mt-4 text-3xl font-black text-[#073b75]">Valoración local reportada</h3>
-              <p className="mt-4 text-lg leading-8 text-[#48636a]">
-                Directorios públicos muestran a La Manada con valoraciones positivas y más de 100 reseñas reportadas.
-              </p>
-            </div>
-            <img
-              src={photos.trust}
-              alt="Perro sentado en exterior"
-              className="h-full min-h-80 rounded-lg object-cover shadow-sm"
-              loading="lazy"
-              decoding="async"
-            />
           </div>
         </div>
       </section>
@@ -676,24 +561,6 @@ export default function Home() {
               Facebook: LaManadaMx
             </a>
           </address>
-        </div>
-      </section>
-
-      <section className="bg-[#eaf7ee] py-16">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-          <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase text-[#0b7f78]">Preguntas frecuentes</p>
-            <h2 className="mt-3 text-4xl font-black text-[#073b75]">Listo para publicar con datos finales.</h2>
-          </div>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {faqs.map((item) => (
-              <article key={item.q} className="rounded-lg border border-[#cbe4d6] bg-white p-6 shadow-sm">
-                <IconBubble Icon={PawPrint} className="bg-[#dff8da] text-[#27780e]" />
-                <h3 className="mt-4 text-xl font-black text-[#073b75]">{item.q}</h3>
-                <p className="mt-3 leading-7 text-[#48636a]">{item.a}</p>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
 

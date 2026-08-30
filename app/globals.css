@@ -41,42 +41,6 @@ body {
   animation-name: hero-copy;
 }
 
-.la-manada-slide {
-  opacity: 0;
-  animation: la-manada-slide 20s infinite;
-}
-
-.la-manada-slide img {
-  transform: scale(1.02);
-  animation: la-manada-image 20s infinite;
-}
-
-@keyframes la-manada-slide {
-  0%,
-  21% {
-    opacity: 1;
-  }
-
-  26%,
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes la-manada-image {
-  0% {
-    transform: scale(1.02);
-  }
-
-  24% {
-    transform: scale(1.08);
-  }
-
-  100% {
-    transform: scale(1.08);
-  }
-}
-
 @keyframes hero-fade {
   0%,
   20% {
@@ -120,15 +84,12 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .hero-bg-slide,
   .hero-bg-slide img,
-  .hero-copy-slide,
-  .la-manada-slide,
-  .la-manada-slide img {
+  .hero-copy-slide {
     animation: none;
   }
 
   .hero-bg-slide:first-child,
-  .hero-copy-slide:first-child,
-  .la-manada-slide:first-child {
+  .hero-copy-slide:first-child {
     opacity: 1;
   }
 
