@@ -2,7 +2,6 @@
 import {
   Bone,
   Cat,
-  Clock3,
   Dog,
   HeartHandshake,
   HeartPulse,
@@ -48,28 +47,28 @@ const heroSlides = [
     alt: 'Perro y gato juntos en casa',
     position: 'center 45%',
     title: 'Todo para su bienestar, en un solo lugar.',
-    copy: 'Veterinaria, cuidado preventivo, estética, alimentos y accesorios para acompañarlos con cariño.',
+    copy: 'Veterinaria, estética, alimentos y accesorios con trato cercano.',
   },
   {
     image: photos.heroCare,
     alt: 'Perro pequeño en revisión veterinaria',
     position: 'center 42%',
     title: 'Cuidado cercano para cada integrante de tu manada.',
-    copy: 'Consulta, prevención y orientación clara para que se sientan mejor.',
+    copy: 'Consulta, prevención y orientación clara.',
   },
   {
     image: photos.heroPlay,
     alt: 'Perros caminando juntos',
     position: 'center 55%',
     title: 'Productos, accesorios y detalles que les encantan.',
-    copy: 'Pregunta por disponibilidad y encuentra opciones para perros y gatos.',
+    copy: 'Opciones útiles para perros y gatos.',
   },
   {
     image: photos.heroCat,
     alt: 'Gato mirando a cámara',
     position: 'center 44%',
     title: 'Veterinaria y tienda con más color y cariño.',
-    copy: 'Una experiencia amable para ellos y práctica para ti.',
+    copy: 'Amable para ellos y práctica para ti.',
   },
 ];
 
@@ -89,19 +88,19 @@ const highlights = [
 const services: IconCard[] = [
   {
     title: 'Consulta veterinaria',
-    copy: 'Evaluación profesional, orientación y seguimiento para cuidar el bienestar de tu mascota.',
+    copy: 'Evaluación, orientación y seguimiento.',
     Icon: Stethoscope,
     color: 'bg-[#dbf7ff] text-[#036b85]',
   },
   {
     title: 'Vacunación y prevención',
-    copy: 'Cuidado preventivo para perros y gatos, con recomendaciones claras para casa.',
+    copy: 'Cuidado preventivo para perros y gatos.',
     Icon: Syringe,
     color: 'bg-[#ffe2dd] text-[#b42318]',
   },
   {
     title: 'Estética e higiene',
-    copy: 'Baños, limpieza y soluciones de cuidado para que se sientan cómodos.',
+    copy: 'Baño, limpieza y cuidado cotidiano.',
     Icon: Scissors,
     color: 'bg-[#fff0bd] text-[#9a5b00]',
   },
@@ -110,37 +109,31 @@ const services: IconCard[] = [
 const storeCategories = [
   {
     title: 'Alimentos',
-    copy: 'Opciones para su rutina diaria.',
     Icon: Bone,
     color: 'bg-[#fff3c4] text-[#8a5800]',
   },
   {
     title: 'Premios',
-    copy: 'Detalles para consentirlos.',
     Icon: Dog,
     color: 'bg-[#dff8da] text-[#27780e]',
   },
   {
     title: 'Higiene',
-    copy: 'Baño, limpieza y cuidado.',
     Icon: Sparkles,
     color: 'bg-[#d9f7ff] text-[#036b85]',
   },
   {
     title: 'Accesorios',
-    copy: 'Correas, juguetes y más.',
     Icon: ShoppingBag,
     color: 'bg-[#ffe2dd] text-[#b42318]',
   },
   {
     title: 'Gatos',
-    copy: 'Productos pensados para ellos.',
     Icon: Cat,
     color: 'bg-[#e6e1ff] text-[#5536a8]',
   },
   {
     title: 'Bienestar',
-    copy: 'Apoyo para sentirse mejor.',
     Icon: HeartPulse,
     color: 'bg-[#e1f7ea] text-[#0b7f50]',
   },
@@ -149,25 +142,25 @@ const storeCategories = [
 const reasons: IconCard[] = [
   {
     title: 'Bienestar primero',
-    copy: 'Productos y servicios pensados para su salud, comodidad y rutina diaria.',
+    copy: 'Salud, comodidad y rutina diaria.',
     Icon: ShieldCheck,
     color: 'bg-[#dbf7ff] text-[#036b85]',
   },
   {
     title: 'Atención cercana',
-    copy: 'Trato amable para los animales y comunicación clara para sus familias.',
+    copy: 'Trato amable y comunicación clara.',
     Icon: HeartHandshake,
     color: 'bg-[#ffe2dd] text-[#b42318]',
   },
   {
     title: 'Todo en un lugar',
-    copy: 'Veterinaria, estética, alimento, higiene y accesorios sin complicarte.',
+    copy: 'Veterinaria, estética y tienda sin vueltas.',
     Icon: ShoppingBag,
     color: 'bg-[#fff0bd] text-[#9a5b00]',
   },
   {
     title: 'Parte de la familia',
-    copy: 'Una marca construida alrededor de una idea simple: los queremos tanto como tú.',
+    copy: 'Los queremos tanto como tú.',
     Icon: PawPrint,
     color: 'bg-[#dff8da] text-[#27780e]',
   },
@@ -176,17 +169,17 @@ const reasons: IconCard[] = [
 const careSteps = [
   {
     title: 'Escríbenos',
-    copy: 'Cuéntanos qué necesita tu mascota y si buscas consulta, estética o producto.',
+    copy: 'Dinos qué necesita tu mascota.',
     Icon: MessageCircle,
   },
   {
     title: 'Te orientamos',
-    copy: 'Recibes una respuesta clara para agendar o revisar disponibilidad antes de ir.',
+    copy: 'Agendamos o revisamos disponibilidad.',
     Icon: HeartHandshake,
   },
   {
     title: 'Llegas con confianza',
-    copy: 'El objetivo es que la visita sea simple, cálida y útil desde el primer contacto.',
+    copy: 'Visita simple, cálida y útil.',
     Icon: ShieldCheck,
   },
 ];
@@ -280,13 +273,13 @@ export default function Home() {
           </div>
         ))}
         <div className="hero-readable-overlay absolute inset-0" />
-        <div className="relative mx-auto min-h-[680px] max-w-7xl px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
-          <div className="flex min-h-[560px] max-w-3xl flex-col items-start justify-center text-left">
+        <div className="relative mx-auto min-h-[610px] max-w-7xl px-5 py-12 sm:px-8 lg:px-10 lg:py-16">
+          <div className="flex min-h-[500px] max-w-3xl flex-col items-start justify-center text-left">
             <p className="text-base font-light text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.55)] sm:text-lg">
               Veterinaria y tienda para mascotas en Tijuana
             </p>
             <h1 className="sr-only">Todo para su bienestar, en un solo lugar.</h1>
-            <div className="relative mt-6 min-h-[330px] w-full sm:min-h-[285px]" aria-hidden="true">
+            <div className="relative mt-5 min-h-[285px] w-full sm:min-h-[245px]" aria-hidden="true">
               {heroSlides.map((slide, index) => (
                 <div
                   key={slide.title}
@@ -296,13 +289,13 @@ export default function Home() {
                   <p className="max-w-3xl text-5xl font-black leading-none text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-6xl lg:text-7xl">
                     {slide.title}
                   </p>
-                  <p className="mt-6 max-w-2xl text-lg leading-8 text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.56)] sm:text-xl">
+                  <p className="mt-5 max-w-2xl text-lg leading-8 text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.56)] sm:text-xl">
                     {slide.copy}
                   </p>
                 </div>
               ))}
             </div>
-            <div className="mt-8">
+            <div className="mt-6">
               <CtaButtons />
             </div>
           </div>
@@ -323,13 +316,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="veterinaria" className="bg-[#f7fbf5] py-16 sm:py-20">
+      <section id="veterinaria" className="bg-[#f7fbf5] py-12 sm:py-14">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
-          <div className="relative min-h-[420px] overflow-hidden rounded-lg bg-[#073b75] shadow-[0_24px_70px_rgba(7,59,117,0.16)]">
+          <div className="relative min-h-[380px] overflow-hidden rounded-lg bg-[#073b75] shadow-[0_24px_70px_rgba(7,59,117,0.16)]">
             <img
               src={photos.serviceConsult}
               alt="Perro pequeño en revisión veterinaria"
-              className="h-full min-h-[420px] w-full object-cover"
+              className="h-full min-h-[380px] w-full object-cover"
               loading="lazy"
               decoding="async"
             />
@@ -345,23 +338,16 @@ export default function Home() {
               Cuidamos a cada integrante de tu manada.
             </h2>
             <p className="mt-5 text-lg leading-8 text-[#48636a]">
-              Aquí la veterinaria se presenta como atención y prevención. La tienda tiene su propio espacio más abajo para no mezclar mensajes.
+              Atención, prevención y estética con trato cercano.
             </p>
-            <div className="mt-8 divide-y divide-[#cfe5de] border-y border-[#cfe5de]">
+            <div className="mt-7 divide-y divide-[#cfe5de] border-y border-[#cfe5de]">
               {services.map(({ title, copy, Icon, color }) => (
-                <article key={title} className="grid gap-4 py-6 sm:grid-cols-[auto_1fr_auto] sm:items-center">
+                <article key={title} className="grid gap-4 py-5 sm:grid-cols-[auto_1fr] sm:items-center">
                   <IconBubble Icon={Icon} className={color} />
                   <div>
                     <h3 className="text-2xl font-black text-[#073b75]">{title}</h3>
                     <p className="mt-2 leading-7 text-[#48636a]">{copy}</p>
                   </div>
-                  <a
-                    href={whatsappUrl}
-                    className="inline-flex min-h-11 w-fit items-center rounded-full bg-[#e6faf5] px-5 font-black text-[#0b7f78] transition hover:bg-[#d0f5ec] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
-                  >
-                    <MessageCircle aria-hidden="true" className="mr-2 h-5 w-5" />
-                    Preguntar
-                  </a>
                 </article>
               ))}
             </div>
@@ -369,39 +355,26 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#073b75] py-16 text-white sm:py-20">
+      <section className="bg-[#073b75] py-12 text-white sm:py-14">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:px-10">
           <div className="flex flex-col justify-center">
             <p className="text-sm font-black uppercase text-[#98ead7]">Veterinaria</p>
             <h2 className="mt-3 text-4xl font-black sm:text-5xl">
               Su salud también es parte de nuestro vínculo.
             </h2>
-            <p className="mt-5 text-lg leading-8 text-[#dceee9]">
+            <p className="mt-5 max-w-xl text-lg leading-8 text-[#dceee9]">
               El cuidado se comunica de forma cálida: atención profesional,
               orientación para casa y seguimiento cuando tu mascota lo necesita.
             </p>
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {[
-                { label: 'Atención personalizada', Icon: HeartHandshake },
-                { label: 'Cuidado preventivo', Icon: ShieldCheck },
-                { label: 'Orientación clara', Icon: MessageCircle },
-                { label: 'Seguimiento cercano', Icon: Clock3 },
-              ].map(({ label, Icon }) => (
-                <div key={label} className="flex items-center gap-3 rounded-lg border border-white/18 bg-white/12 px-4 py-3 font-bold">
-                  <Icon aria-hidden="true" className="h-5 w-5 text-[#98ead7]" />
-                  {label}
-                </div>
-              ))}
-            </div>
             <a
               href={whatsappUrl}
-              className="mt-8 inline-flex min-h-12 w-fit items-center justify-center rounded-full bg-[#ff8a1d] px-7 font-black text-white transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
+              className="mt-7 inline-flex min-h-12 w-fit items-center justify-center rounded-full bg-[#ff8a1d] px-7 font-black text-white transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
             >
               <MessageCircle aria-hidden="true" className="mr-2 h-5 w-5" />
               Agenda una consulta
             </a>
           </div>
-          <div className="rounded-lg border border-white/18 bg-white/10 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.14)] sm:p-8">
+          <div className="rounded-lg border border-white/18 bg-white/10 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.14)]">
             <p className="text-sm font-black uppercase text-[#fff0bd]">Así funciona</p>
             <div className="mt-6 space-y-6">
               {careSteps.map(({ title, copy, Icon }, index) => (
@@ -423,7 +396,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="tienda" className="bg-[#fff7e8] py-16 sm:py-20">
+      <section id="tienda" className="bg-[#fff7e8] py-12 sm:py-14">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.92fr] lg:px-10">
           <div>
             <p className="text-sm font-black uppercase text-[#c65b00]">Tienda</p>
@@ -431,19 +404,16 @@ export default function Home() {
               Un espacio para resolver la rutina de perros y gatos.
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[#5f4b32]">
-              Aquí el enfoque cambia: productos, disponibilidad y orientación rápida para que encuentres lo que sí les sirve.
+              Productos, disponibilidad y orientación rápida en sucursal.
             </p>
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              {storeCategories.map(({ title, copy, Icon, color }) => (
+            <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              {storeCategories.map(({ title, Icon, color }) => (
                 <div
                   key={title}
-                  className="flex min-h-24 items-center gap-4 rounded-lg border-2 border-white bg-white/82 p-4 shadow-[0_10px_28px_rgba(198,91,0,0.08)]"
+                  className="flex min-h-20 items-center gap-4 rounded-lg border-2 border-white bg-white/82 p-4 shadow-[0_10px_28px_rgba(198,91,0,0.08)]"
                 >
                   <IconBubble Icon={Icon} className={color} />
-                  <div>
-                    <h3 className="text-xl font-black text-[#073b75]">{title}</h3>
-                    <p className="mt-1 leading-6 text-[#6a5b45]">{copy}</p>
-                  </div>
+                  <h3 className="text-xl font-black text-[#073b75]">{title}</h3>
                 </div>
               ))}
             </div>
@@ -459,7 +429,7 @@ export default function Home() {
             <img
               src={photos.shop}
               alt="Perro junto a productos para mascotas"
-              className="h-full min-h-[460px] w-full object-cover"
+              className="h-full min-h-[420px] w-full object-cover"
               loading="lazy"
               decoding="async"
             />
@@ -476,7 +446,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="nosotros" className="bg-[#f7fbf5] py-16 sm:py-20">
+      <section id="nosotros" className="bg-[#f7fbf5] py-12 sm:py-14">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
             <div className="overflow-hidden rounded-lg bg-white shadow-[0_18px_46px_rgba(7,59,117,0.1)]">
@@ -494,11 +464,9 @@ export default function Home() {
                 Los queremos tanto como tú.
               </h2>
               <p className="mt-5 text-lg leading-8 text-[#48636a]">
-                La marca no tiene que sentirse como una clínica fría. Debe transmitir
-                confianza, cercanía y la tranquilidad de encontrar cuidado y productos
-                útiles en un mismo lugar.
+                Confianza, cercanía y cuidado útil en un mismo lugar.
               </p>
-              <div className="mt-8 grid gap-5">
+              <div className="mt-7 grid gap-4 sm:grid-cols-2">
                 {reasons.map(({ title, copy, Icon, color }) => (
                   <article key={title} className="grid gap-4 sm:grid-cols-[auto_1fr]">
                     <IconBubble Icon={Icon} className={color} />
@@ -524,14 +492,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contacto" className="bg-[#073b75] py-16 text-white sm:py-20">
+      <section id="contacto" className="bg-[#073b75] py-12 text-white sm:py-14">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:px-10">
           <div>
             <p className="text-sm font-black uppercase text-[#98ead7]">Contacto</p>
             <h2 className="mt-3 text-4xl font-black sm:text-5xl">¿Tienes dudas sobre tu mascota?</h2>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[#dceee9]">
-              Escríbenos para agendar, confirmar horarios o revisar disponibilidad de
-              productos. La acción principal de la página queda centrada en WhatsApp.
+              Escríbenos para agendar, confirmar horarios o revisar productos.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
