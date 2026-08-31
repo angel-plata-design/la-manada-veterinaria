@@ -10,7 +10,7 @@
     "build": "vinext build",
     "build:github-pages": "npm --prefix github-pages run build",
     "start": "vinext start",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern out --ignore-pattern docs --ignore-pattern github-pages/node_modules"
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern out --ignore-pattern docs --ignore-pattern github-pages/node_modules --ignore-pattern .tmp-gh-pages-*"
   },
   "dependencies": {
     "lucide-react": "^1.34.0",
