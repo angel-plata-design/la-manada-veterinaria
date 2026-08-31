@@ -40,29 +40,48 @@ jobs:
           replaceAll('app/page.tsx', 'relative mt-4 min-h-[178px] w-full sm:mt-5 sm:min-h-[230px]', 'relative mt-4 min-h-[170px] w-full sm:mt-5 sm:min-h-[205px]');
           replaceAll('app/page.tsx', 'max-w-3xl text-4xl font-black leading-[1] text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-6xl lg:text-7xl', 'max-w-2xl text-4xl font-black leading-[1.02] text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-5xl lg:text-6xl');
 
+          const desktopLeftFrom = [
+            'rgba(4, 35, 73, 0.7) 0%,',
+            '      rgba(7, 59, 117, 0.46) 34%,',
+            '      rgba(7, 59, 117, 0.14) 62%,',
+            '      rgba(7, 59, 117, 0.02) 100%',
+          ].join('\n');
+          const desktopLeftTo = [
+            'rgba(4, 35, 73, 0.64) 0%,',
+            '      rgba(6, 50, 92, 0.46) 30%,',
+            '      rgba(7, 59, 117, 0.16) 52%,',
+            '      rgba(7, 59, 117, 0.02) 76%,',
+            '      rgba(7, 59, 117, 0) 100%',
+          ].join('\n');
+          const desktopTopFrom = [
+            'rgba(4, 35, 73, 0.08) 0%,',
+            '      rgba(4, 35, 73, 0.04) 52%,',
+            '      rgba(4, 35, 73, 0.18) 100%',
+          ].join('\n');
+          const desktopTopTo = [
+            'rgba(4, 35, 73, 0.04) 0%,',
+            '      rgba(4, 35, 73, 0.02) 56%,',
+            '      rgba(4, 35, 73, 0.1) 100%',
+          ].join('\n');
+          const mobileFrom = [
+            'rgba(4, 35, 73, 0.78) 0%,',
+            '        rgba(7, 59, 117, 0.62) 46%,',
+            '        rgba(7, 59, 117, 0.46) 72%,',
+            '        rgba(4, 35, 73, 0.38) 100%',
+          ].join('\n');
+          const mobileTo = [
+            'rgba(4, 35, 73, 0.66) 0%,',
+            '        rgba(7, 59, 117, 0.48) 44%,',
+            '        rgba(7, 59, 117, 0.34) 72%,',
+            '        rgba(4, 35, 73, 0.26) 100%',
+          ].join('\n');
+
           for (const file of ['app/globals.css', 'github-pages/globals.css']) {
-            replaceAll(file, `rgba(4, 35, 73, 0.7) 0%,
-      rgba(7, 59, 117, 0.46) 34%,
-      rgba(7, 59, 117, 0.14) 62%,
-      rgba(7, 59, 117, 0.02) 100%`, `rgba(4, 35, 73, 0.64) 0%,
-      rgba(6, 50, 92, 0.46) 30%,
-      rgba(7, 59, 117, 0.16) 52%,
-      rgba(7, 59, 117, 0.02) 76%,
-      rgba(7, 59, 117, 0) 100%`);
-            replaceAll(file, `rgba(4, 35, 73, 0.08) 0%,
-      rgba(4, 35, 73, 0.04) 52%,
-      rgba(4, 35, 73, 0.18) 100%`, `rgba(4, 35, 73, 0.04) 0%,
-      rgba(4, 35, 73, 0.02) 56%,
-      rgba(4, 35, 73, 0.1) 100%`);
+            replaceAll(file, desktopLeftFrom, desktopLeftTo);
+            replaceAll(file, desktopTopFrom, desktopTopTo);
             replaceAll(file, 'transform: scale(1.03);', 'transform: scale(1.01);');
             replaceAll(file, 'transform: scale(1.08);', 'transform: scale(1.04);');
-            replaceAll(file, `rgba(4, 35, 73, 0.78) 0%,
-        rgba(7, 59, 117, 0.62) 46%,
-        rgba(7, 59, 117, 0.46) 72%,
-        rgba(4, 35, 73, 0.38) 100%`, `rgba(4, 35, 73, 0.66) 0%,
-        rgba(7, 59, 117, 0.48) 44%,
-        rgba(7, 59, 117, 0.34) 72%,
-        rgba(4, 35, 73, 0.26) 100%`);
+            replaceAll(file, mobileFrom, mobileTo);
           }
           NODE
 
