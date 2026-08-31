@@ -8,3 +8,4 @@ docs/
 .npm-cache/
 .gh-config/
 next-env.d.ts
+github-pages/package-lock.json

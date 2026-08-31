@@ -14,7 +14,7 @@ Para generar la versión estática:
 
 ```bash
 cd github-pages
-npm ci
+npm install
 npm run build
 ```
 
