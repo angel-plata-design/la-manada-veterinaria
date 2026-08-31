@@ -7,5 +7,6 @@ out/
 docs/
 .npm-cache/
 .gh-config/
+.tmp-gh-pages-*
 next-env.d.ts
 github-pages/package-lock.json
