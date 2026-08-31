@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "vinext dev",
     "build": "vinext build",
-    "build:github-pages": "vite build --config vite.github-pages.config.ts",
+    "build:github-pages": "npm --prefix github-pages run build",
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern out --ignore-pattern docs --ignore-pattern github-pages/node_modules"
   },
