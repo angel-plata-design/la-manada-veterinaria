@@ -4,7 +4,6 @@ dist/
 .vinext/
 .wrangler/
 out/
-docs/
 .npm-cache/
 .gh-config/
 .tmp-gh-pages-*
