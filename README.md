@@ -13,5 +13,9 @@ Settings > Pages debe usar **GitHub Actions** como fuente de publicación.
 Para generar la versión estática:
 
 ```bash
-npm run build:github-pages
+cd github-pages
+npm ci
+npm run build
 ```
+
+El resultado validado para GitHub Pages queda en `docs/`.
