@@ -23,68 +23,6 @@ jobs:
         with:
           node-version: 22
 
-      - name: Apply hero image visibility tuning
-        run: |
-          node <<'NODE'
-          const fs = require('fs');
-
-          function replaceAll(file, from, to) {
-            const text = fs.readFileSync(file, 'utf8');
-            const next = text.split(from).join(to);
-            if (next !== text) fs.writeFileSync(file, next);
-          }
-
-          replaceAll('app/page.tsx', "position: 'center center'", "position: 'center top'");
-          replaceAll('app/page.tsx', 'relative mx-auto min-h-[520px] max-w-7xl px-5 py-9 sm:min-h-[560px] sm:px-8 lg:px-10 lg:py-14', 'relative mx-auto min-h-[590px] max-w-7xl px-5 py-9 sm:min-h-[610px] sm:px-8 lg:min-h-[620px] lg:px-10 lg:py-14');
-          replaceAll('app/page.tsx', 'flex min-h-[420px] max-w-3xl flex-col items-start justify-center text-left sm:min-h-[460px]', 'flex min-h-[490px] max-w-[560px] flex-col items-start justify-center text-left sm:min-h-[500px] lg:min-h-[510px] lg:max-w-[620px]');
-          replaceAll('app/page.tsx', 'relative mt-4 min-h-[178px] w-full sm:mt-5 sm:min-h-[230px]', 'relative mt-4 min-h-[170px] w-full sm:mt-5 sm:min-h-[205px]');
-          replaceAll('app/page.tsx', 'max-w-3xl text-4xl font-black leading-[1] text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-6xl lg:text-7xl', 'max-w-2xl text-4xl font-black leading-[1.02] text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-5xl lg:text-6xl');
-
-          const desktopLeftFrom = [
-            'rgba(4, 35, 73, 0.7) 0%,',
-            '      rgba(7, 59, 117, 0.46) 34%,',
-            '      rgba(7, 59, 117, 0.14) 62%,',
-            '      rgba(7, 59, 117, 0.02) 100%',
-          ].join('\n');
-          const desktopLeftTo = [
-            'rgba(4, 35, 73, 0.64) 0%,',
-            '      rgba(6, 50, 92, 0.46) 30%,',
-            '      rgba(7, 59, 117, 0.16) 52%,',
-            '      rgba(7, 59, 117, 0.02) 76%,',
-            '      rgba(7, 59, 117, 0) 100%',
-          ].join('\n');
-          const desktopTopFrom = [
-            'rgba(4, 35, 73, 0.08) 0%,',
-            '      rgba(4, 35, 73, 0.04) 52%,',
-            '      rgba(4, 35, 73, 0.18) 100%',
-          ].join('\n');
-          const desktopTopTo = [
-            'rgba(4, 35, 73, 0.04) 0%,',
-            '      rgba(4, 35, 73, 0.02) 56%,',
-            '      rgba(4, 35, 73, 0.1) 100%',
-          ].join('\n');
-          const mobileFrom = [
-            'rgba(4, 35, 73, 0.78) 0%,',
-            '        rgba(7, 59, 117, 0.62) 46%,',
-            '        rgba(7, 59, 117, 0.46) 72%,',
-            '        rgba(4, 35, 73, 0.38) 100%',
-          ].join('\n');
-          const mobileTo = [
-            'rgba(4, 35, 73, 0.66) 0%,',
-            '        rgba(7, 59, 117, 0.48) 44%,',
-            '        rgba(7, 59, 117, 0.34) 72%,',
-            '        rgba(4, 35, 73, 0.26) 100%',
-          ].join('\n');
-
-          for (const file of ['app/globals.css', 'github-pages/globals.css']) {
-            replaceAll(file, desktopLeftFrom, desktopLeftTo);
-            replaceAll(file, desktopTopFrom, desktopTopTo);
-            replaceAll(file, 'transform: scale(1.03);', 'transform: scale(1.01);');
-            replaceAll(file, 'transform: scale(1.08);', 'transform: scale(1.04);');
-            replaceAll(file, mobileFrom, mobileTo);
-          }
-          NODE
-
       - name: Install dependencies
         run: npm install
         working-directory: github-pages
@@ -100,10 +38,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app/page.tsx app/globals.css github-pages/globals.css docs
+          git add docs
           if git diff --cached --quiet; then
             echo "No static changes to commit"
           else
-            git commit -m "Give hero images more presence [skip ci]"
+            git commit -m "Build GitHub Pages static files [skip ci]"
             git push
           fi
