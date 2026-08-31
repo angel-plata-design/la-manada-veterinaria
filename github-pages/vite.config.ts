@@ -2,11 +2,10 @@ import tailwindcss from '@tailwindcss/postcss';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import type { Plugin } from 'vite';
+import { fileURLToPath } from 'node:url';
 
-const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '/la-manada-veterinaria';
-const normalizedBasePath =
-  rawBasePath === '/' ? '' : rawBasePath.replace(/\/$/, '');
-const githubPagesAssetPaths = [
+const normalizedBasePath = '/la-manada-veterinaria';
+const publicAssetPaths = [
   '/hero-perro-gato.webp',
   '/hero-perro-chico.webp',
   '/hero-perro.webp',
@@ -14,18 +13,19 @@ const githubPagesAssetPaths = [
   '/la-manada-isotipo.png',
   '/la-manada-logo-solo.png',
 ];
+const fromHere = (path: string) => fileURLToPath(new URL(path, import.meta.url));
 
 function githubPagesPublicAssetBase(): Plugin {
   return {
     name: 'github-pages-public-asset-base',
     enforce: 'pre',
     transform(code, id) {
-      if (!id.replace(/\\/g, '/').endsWith('/app/page.tsx') || !normalizedBasePath) {
+      if (!id.replace(/\\/g, '/').endsWith('/app/page.tsx')) {
         return null;
       }
 
       let transformedCode = code;
-      for (const assetPath of githubPagesAssetPaths) {
+      for (const assetPath of publicAssetPaths) {
         transformedCode = transformedCode.replaceAll(
           assetPath,
           `${normalizedBasePath}${assetPath}`,
@@ -38,11 +38,27 @@ function githubPagesPublicAssetBase(): Plugin {
 }
 
 export default defineConfig({
-  root: 'github-pages',
   base: `${normalizedBasePath}/`,
   publicDir: '../public',
-  define: {
-    __ASSET_BASE_PATH__: JSON.stringify(normalizedBasePath),
+  resolve: {
+    alias: [
+      {
+        find: /^lucide-react$/,
+        replacement: fromHere('./node_modules/lucide-react/dist/esm/lucide-react.mjs'),
+      },
+      {
+        find: /^react$/,
+        replacement: fromHere('./node_modules/react/index.js'),
+      },
+      {
+        find: /^react\/jsx-runtime$/,
+        replacement: fromHere('./node_modules/react/jsx-runtime.js'),
+      },
+      {
+        find: /^react-dom\/client$/,
+        replacement: fromHere('./node_modules/react-dom/client.js'),
+      },
+    ],
   },
   css: {
     postcss: {
@@ -51,7 +67,7 @@ export default defineConfig({
   },
   plugins: [githubPagesPublicAssetBase(), react()],
   build: {
-    outDir: '../out',
+    outDir: '../docs',
     emptyOutDir: true,
   },
 });
