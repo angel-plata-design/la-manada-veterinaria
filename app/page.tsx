@@ -51,28 +51,28 @@ const heroSlides = [
   {
     image: photos.heroFamily,
     alt: 'Perro y gato juntos en casa',
-    position: 'center center',
+    position: 'center top',
     title: 'Bienestar en un solo lugar.',
     copy: 'Veterinaria, estética, alimento y accesorios.',
   },
   {
     image: photos.heroCare,
     alt: 'Perro pequeño en revisión veterinaria',
-    position: 'center center',
+    position: 'center top',
     title: 'Cuidado cercano para tu mascota.',
     copy: 'Consulta, prevención y orientación clara.',
   },
   {
     image: photos.heroPlay,
     alt: 'Perros caminando juntos',
-    position: 'center center',
+    position: 'center top',
     title: 'Tienda para perros y gatos.',
     copy: 'Alimento, higiene y accesorios.',
   },
   {
     image: photos.heroCat,
     alt: 'Gato mirando a cámara',
-    position: 'center center',
+    position: 'center top',
     title: 'Cuidado con confianza.',
     copy: 'Trato amable para tu mascota.',
   },
@@ -332,20 +332,20 @@ export default function Home() {
           </div>
         ))}
         <div className="hero-readable-overlay absolute inset-0" />
-        <div className="relative mx-auto min-h-[520px] max-w-7xl px-5 py-9 sm:min-h-[560px] sm:px-8 lg:px-10 lg:py-14">
-          <div className="flex min-h-[420px] max-w-3xl flex-col items-start justify-center text-left sm:min-h-[460px]">
+        <div className="relative mx-auto min-h-[590px] max-w-7xl px-5 py-9 sm:min-h-[610px] sm:px-8 lg:min-h-[620px] lg:px-10 lg:py-14">
+          <div className="flex min-h-[490px] max-w-[560px] flex-col items-start justify-center text-left sm:min-h-[500px] lg:min-h-[510px] lg:max-w-[620px]">
             <p className="text-base font-light text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.55)] sm:text-lg">
               Veterinaria y tienda para mascotas en Tijuana
             </p>
             <h1 className="sr-only">La Manada, veterinaria y tienda para mascotas en Tijuana.</h1>
-            <div className="relative mt-4 min-h-[178px] w-full sm:mt-5 sm:min-h-[230px]" aria-hidden="true">
+            <div className="relative mt-4 min-h-[170px] w-full sm:mt-5 sm:min-h-[205px]" aria-hidden="true">
               {heroSlides.map((slide, index) => (
                 <div
                   key={slide.title}
                   className="hero-copy-slide absolute inset-0 flex flex-col items-start justify-center"
                   style={{ animationDelay: `${index * 5}s` }}
                 >
-                  <p className="max-w-3xl text-4xl font-black leading-[1] text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-6xl lg:text-7xl">
+                  <p className="max-w-2xl text-4xl font-black leading-[1.02] text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-5xl lg:text-6xl">
                     {slide.title}
                   </p>
                   <p className="mt-4 max-w-2xl text-base leading-7 text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.56)] sm:mt-5 sm:text-xl">
