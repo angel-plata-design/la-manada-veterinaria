@@ -23,6 +23,97 @@ jobs:
         with:
           node-version: 22
 
+      - name: Apply mobile navigation and SEO updates
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          function writeIfChanged(file, text) {
+            const current = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null;
+            if (current !== text) fs.writeFileSync(file, text);
+          }
+
+          function insertAfter(text, needle, addition) {
+            return text.includes(addition.trim()) ? text : text.replace(needle, needle + addition);
+          }
+
+          let page = fs.readFileSync('app/page.tsx', 'utf8');
+          page = page.replace('  Menu,\n', '');
+          const navBlock = `const navLinks = [\n  { href: '#inicio', label: 'Inicio' },\n  { href: '#veterinaria', label: 'Veterinaria' },\n  { href: '#tienda', label: 'Tienda' },\n  { href: '#nosotros', label: 'Nosotros' },\n  { href: '#contacto', label: 'Contacto' },\n];\n`;
+          const mobileNavBlock = `\nconst mobileNavLinks = [\n  { href: '#inicio', label: 'Inicio' },\n  { href: '#veterinaria', label: 'Vet' },\n  { href: '#tienda', label: 'Tienda' },\n  { href: '#nosotros', label: 'Nosotros' },\n  { href: '#contacto', label: 'Contacto' },\n];\n`;
+          if (!page.includes('const mobileNavLinks = [')) {
+            page = page.replace(navBlock, navBlock + mobileNavBlock);
+          }
+          const detailsStart = page.indexOf('            <details className="relative md:hidden">');
+          if (detailsStart !== -1) {
+            const detailsEnd = page.indexOf('            </details>', detailsStart);
+            if (detailsEnd !== -1) {
+              page = page.slice(0, detailsStart) + page.slice(detailsEnd + '            </details>\n'.length);
+            }
+          }
+          const closeHeader = '        </nav>\n      </header>';
+          const mobileNavMarkup = `        </nav>\n        <div className="border-t border-[#d7ebe4] bg-white/78 md:hidden">\n          <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-5 py-2 sm:px-8">\n            {mobileNavLinks.map((link) => (\n              <a\n                key={link.href}\n                className="flex h-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#eaf7ee] px-4 text-sm font-black text-[#073b75] transition hover:bg-[#d9f8ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"\n                href={link.href}\n              >\n                {link.label}\n              </a>\n            ))}\n          </div>\n        </div>\n      </header>`;
+          if (!page.includes('mobileNavLinks.map')) {
+            page = page.replace(closeHeader, mobileNavMarkup);
+          }
+          writeIfChanged('app/page.tsx', page);
+
+          let layout = fs.readFileSync('app/layout.tsx', 'utf8');
+          const seoConstants = [
+            "const siteUrl = 'https://angel-plata-design.github.io/la-manada-veterinaria';",
+            "const businessJsonLd = {",
+            "  '@context': 'https://schema.org',",
+            "  '@type': ['VeterinaryCare', 'PetStore'],",
+            "  name: 'La Manada',",
+            "  url: siteUrl,",
+            "  logo: `${siteUrl}/la-manada-logo-solo.png`,",
+            "  image: `${siteUrl}/og.png`,",
+            "  slogan: 'Los queremos tanto como tú',",
+            "  description:",
+            "    'Veterinaria, estética, alimentos y accesorios para mascotas en Tijuana.',",
+            "  telephone: '+52 664 976 3634',",
+            "  priceRange: '$$',",
+            "  address: {",
+            "    '@type': 'PostalAddress',",
+            "    streetAddress: 'Paseo del Cedro 11007, Urbiquinta Del Cedro',",
+            "    addressLocality: 'Tijuana',",
+            "    addressRegion: 'Baja California',",
+            "    addressCountry: 'MX',",
+            "  },",
+            "  areaServed: {",
+            "    '@type': 'City',",
+            "    name: 'Tijuana',",
+            "  },",
+            "  sameAs: ['https://www.facebook.com/LaManadaMx/'],",
+            "};",
+            "",
+          ].join('\n');
+          if (!layout.includes('const siteUrl = ')) {
+            layout = layout.replace("import './globals.css';\n\n", "import './globals.css';\n\n" + seoConstants);
+          }
+          layout = layout.replace("metadataBase: new URL('https://la-manada-veterinaria.angeleplata91.chatgpt.site'),", 'metadataBase: new URL(siteUrl),');
+          if (!layout.includes('keywords: [')) {
+            layout = layout.replace("  description:\n    'Veterinaria, estética, alimentos y accesorios para mascotas en Tijuana. Los queremos tanto como tú.',\n", "  description:\n    'Veterinaria, estética, alimentos y accesorios para mascotas en Tijuana. Los queremos tanto como tú.',\n  keywords: [\n    'La Manada',\n    'veterinaria en Tijuana',\n    'tienda de mascotas Tijuana',\n    'alimentos para mascotas',\n    'estética canina',\n    'veterinaria Urbiquinta Del Cedro',\n  ],\n  alternates: {\n    canonical: siteUrl,\n  },\n  robots: {\n    index: true,\n    follow: true,\n  },\n");
+          }
+          if (!layout.includes('siteName: ')) {
+            layout = layout.replace("    images: ['/og.png'],", "    url: siteUrl,\n    siteName: 'La Manada',\n    locale: 'es_MX',\n    type: 'website',\n    images: [\n      {\n        url: '/og.png',\n        width: 1200,\n        height: 630,\n        alt: 'La Manada veterinaria y tienda de mascotas en Tijuana',\n      },\n    ],");
+          }
+          if (!layout.includes('application/ld+json')) {
+            layout = layout.replace("        {children}\n      </body>", "        {children}\n        <script\n          type=\"application/ld+json\"\n          dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}\n        />\n      </body>");
+          }
+          writeIfChanged('app/layout.tsx', layout);
+
+          let index = fs.readFileSync('github-pages/index.html', 'utf8');
+          if (!index.includes('rel="canonical"')) {
+            index = index.replace(`    <meta\n      name="description"\n      content="Veterinaria, estética, alimentos y accesorios para mascotas en Tijuana. Los queremos tanto como tú."\n    />`, `    <meta\n      name="description"\n      content="Veterinaria, estética, alimentos y accesorios para mascotas en Tijuana. Los queremos tanto como tú."\n    />\n    <meta\n      name="keywords"\n      content="La Manada, veterinaria en Tijuana, tienda de mascotas Tijuana, alimentos para mascotas, estética canina, veterinaria Urbiquinta Del Cedro"\n    />\n    <meta name="robots" content="index, follow" />\n    <link rel="canonical" href="https://angel-plata-design.github.io/la-manada-veterinaria/" />`);
+            index = index.replace(`    <meta property="og:image" content="%BASE_URL%og.png" />\n    <meta name="twitter:card" content="summary_large_image" />\n    <link rel="icon" href="%BASE_URL%la-manada-isotipo.png" />`, `    <meta property="og:type" content="website" />\n    <meta property="og:locale" content="es_MX" />\n    <meta property="og:site_name" content="La Manada" />\n    <meta property="og:url" content="https://angel-plata-design.github.io/la-manada-veterinaria/" />\n    <meta property="og:image" content="%BASE_URL%og.png" />\n    <meta property="og:image:alt" content="La Manada veterinaria y tienda de mascotas en Tijuana" />\n    <meta name="twitter:card" content="summary_large_image" />\n    <meta name="twitter:title" content="La Manada | Los queremos tanto como tú" />\n    <meta\n      name="twitter:description"\n      content="Veterinaria, estética, alimentos y accesorios para cuidar a cada integrante de tu manada."\n    />\n    <meta name="twitter:image" content="%BASE_URL%og.png" />\n    <link rel="icon" href="%BASE_URL%la-manada-isotipo.png" />\n    <script type="application/ld+json">\n      {\n        "@context": "https://schema.org",\n        "@type": ["VeterinaryCare", "PetStore"],\n        "name": "La Manada",\n        "url": "https://angel-plata-design.github.io/la-manada-veterinaria/",\n        "logo": "https://angel-plata-design.github.io/la-manada-veterinaria/la-manada-logo-solo.png",\n        "image": "https://angel-plata-design.github.io/la-manada-veterinaria/og.png",\n        "slogan": "Los queremos tanto como tú",\n        "description": "Veterinaria, estética, alimentos y accesorios para mascotas en Tijuana.",\n        "telephone": "+52 664 976 3634",\n        "priceRange": "$$",\n        "address": {\n          "@type": "PostalAddress",\n          "streetAddress": "Paseo del Cedro 11007, Urbiquinta Del Cedro",\n          "addressLocality": "Tijuana",\n          "addressRegion": "Baja California",\n          "addressCountry": "MX"\n        },\n        "areaServed": {\n          "@type": "City",\n          "name": "Tijuana"\n        },\n        "sameAs": ["https://www.facebook.com/LaManadaMx/"]\n      }\n    </script>`);
+          }
+          writeIfChanged('github-pages/index.html', index);
+
+          writeIfChanged('public/robots.txt', 'User-agent: *\nAllow: /\n\nSitemap: https://angel-plata-design.github.io/la-manada-veterinaria/sitemap.xml\n');
+          writeIfChanged('public/sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url>\n    <loc>https://angel-plata-design.github.io/la-manada-veterinaria/</loc>\n    <priority>1.0</priority>\n  </url>\n</urlset>\n');
+          NODE
+
       - name: Install dependencies
         run: npm install
         working-directory: github-pages
@@ -38,10 +129,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs
+          git add app/layout.tsx app/page.tsx github-pages/index.html public/robots.txt public/sitemap.xml docs
           if git diff --cached --quiet; then
             echo "No static changes to commit"
           else
-            git commit -m "Build GitHub Pages static files [skip ci]"
+            git commit -m "Improve mobile navigation and local SEO [skip ci]"
             git push
           fi
