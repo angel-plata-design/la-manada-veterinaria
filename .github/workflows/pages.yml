@@ -23,6 +23,70 @@ jobs:
         with:
           node-version: 22
 
+      - name: Apply typography and spacing updates
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          function writeIfChanged(file, text) {
+            const current = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : null;
+            if (current !== text) fs.writeFileSync(file, text);
+          }
+
+          function replaceAllChecked(text, pairs) {
+            for (const [from, to] of pairs) {
+              text = text.replaceAll(from, to);
+            }
+            return text;
+          }
+
+          let layout = fs.readFileSync('app/layout.tsx', 'utf8');
+          layout = layout.replace("import { Geist, Geist_Mono } from 'next/font/google';", "import { Geist_Mono, Poppins } from 'next/font/google';");
+          layout = layout.replace(`const geistSans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+});`, `const poppins = Poppins({
+  variable: '--font-poppins',
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+});`);
+          layout = layout.replace('${geistSans.variable} ${geistMono.variable} antialiased', '${poppins.variable} ${geistMono.variable} antialiased');
+          writeIfChanged('app/layout.tsx', layout);
+
+          let globals = fs.readFileSync('app/globals.css', 'utf8');
+          globals = globals.replace('--font-sans: var(--font-geist-sans);', '--font-sans: var(--font-poppins);');
+          globals = globals.replace('font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;', 'font-family: var(--font-poppins), Poppins, Arial, Helvetica, sans-serif;\n  letter-spacing: 0;');
+          writeIfChanged('app/globals.css', globals);
+
+          let ghGlobals = fs.readFileSync('github-pages/globals.css', 'utf8');
+          if (!ghGlobals.startsWith("@import url('https://fonts.googleapis.com/css2?family=Poppins")) {
+            ghGlobals = "@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');\n" + ghGlobals;
+          }
+          ghGlobals = ghGlobals.replace('--font-sans: var(--font-geist-sans);', "--font-sans: 'Poppins', Arial, Helvetica, sans-serif;");
+          ghGlobals = ghGlobals.replace('font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;', "font-family: 'Poppins', Arial, Helvetica, sans-serif;\n  letter-spacing: 0;");
+          writeIfChanged('github-pages/globals.css', ghGlobals);
+
+          let ghIndex = fs.readFileSync('github-pages/index.html', 'utf8');
+          ghIndex = ghIndex.replace('font-family: Arial, sans-serif;', 'font-family: Poppins, Arial, sans-serif;');
+          writeIfChanged('github-pages/index.html', ghIndex);
+
+          let page = fs.readFileSync('app/page.tsx', 'utf8');
+          page = replaceAllChecked(page, [
+            ['<section id="veterinaria" className="bg-[#f7fbf5] py-12 sm:py-14">', '<section id="veterinaria" className="bg-[#f7fbf5] py-16 sm:py-20 lg:py-24">'],
+            ['<div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">', '<div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-10">'],
+            ['<section className="bg-[#073b75] py-12 text-white sm:py-14">', '<section className="bg-[#073b75] py-16 text-white sm:py-20 lg:py-24">'],
+            ['<div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:px-10">', '<div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-10">'],
+            ['<section id="tienda" className="bg-[#fff7e8] py-12 sm:py-14">', '<section id="tienda" className="bg-[#fff7e8] py-16 sm:py-20 lg:py-24">'],
+            ['<div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.92fr] lg:px-10">', '<div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_0.92fr] lg:gap-16 lg:px-10">'],
+            ['<section id="nosotros" className="bg-[#f7fbf5] py-12 sm:py-14">', '<section id="nosotros" className="bg-[#f7fbf5] py-16 sm:py-20 lg:py-24">'],
+            ['<div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">', '<div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">'],
+            ['<section id="contacto" className="bg-[#073b75] py-12 text-white sm:py-14">', '<section id="contacto" className="bg-[#073b75] py-16 text-white sm:py-20 lg:py-24">'],
+            ['<div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:px-10">', '<div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:gap-16 lg:px-10">'],
+            ['<div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 md:grid-cols-[1fr_auto] lg:px-10">', '<div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 sm:py-16 md:grid-cols-[1fr_auto] lg:px-10">'],
+          ]);
+          writeIfChanged('app/page.tsx', page);
+          NODE
+
       - name: Install dependencies
         run: npm install
         working-directory: github-pages
@@ -38,10 +102,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs
+          git add app/globals.css app/layout.tsx app/page.tsx github-pages/globals.css github-pages/index.html docs
           if git diff --cached --quiet; then
             echo "No static changes to commit"
           else
-            git commit -m "Build GitHub Pages static files [skip ci]"
+            git commit -m "Update typography and section spacing [skip ci]"
             git push
           fi
