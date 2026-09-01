@@ -333,8 +333,8 @@ export default function Home() {
           </div>
         ))}
         <div className="hero-readable-overlay absolute inset-0" />
-        <div className="relative mx-auto min-h-[590px] max-w-7xl px-5 py-9 sm:min-h-[610px] sm:px-8 lg:min-h-[620px] lg:px-10 lg:py-14">
-          <div className="flex min-h-[490px] max-w-[560px] flex-col items-start justify-center text-left sm:min-h-[500px] lg:min-h-[510px] lg:max-w-[620px]">
+        <div className="relative mx-auto min-h-[660px] max-w-7xl px-5 py-9 sm:min-h-[710px] sm:px-8 lg:min-h-[750px] lg:px-10 lg:py-14">
+          <div className="flex min-h-[560px] max-w-[560px] flex-col items-start justify-center text-left sm:min-h-[600px] lg:min-h-[640px] lg:max-w-[620px]">
             <p className="text-base font-light text-white drop-shadow-[0_3px_12px_rgba(0,0,0,0.55)] sm:text-lg">
               Veterinaria y tienda para mascotas en Tijuana
             </p>
