@@ -23,59 +23,6 @@ jobs:
         with:
           node-version: 22
 
-      - name: Apply typography and spacing updates
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          def write_if_changed(file, text):
-              path = Path(file)
-              current = path.read_text(encoding='utf-8') if path.exists() else None
-              if current != text:
-                  path.write_text(text, encoding='utf-8')
-
-          replacements = [
-              ('<section id="veterinaria" className="bg-[#f7fbf5] py-12 sm:py-14">', '<section id="veterinaria" className="bg-[#f7fbf5] py-16 sm:py-20 lg:py-24">'),
-              ('<div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">', '<div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-10">'),
-              ('<section className="bg-[#073b75] py-12 text-white sm:py-14">', '<section className="bg-[#073b75] py-16 text-white sm:py-20 lg:py-24">'),
-              ('<div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:px-10">', '<div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-10">'),
-              ('<section id="tienda" className="bg-[#fff7e8] py-12 sm:py-14">', '<section id="tienda" className="bg-[#fff7e8] py-16 sm:py-20 lg:py-24">'),
-              ('<div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.92fr] lg:px-10">', '<div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_0.92fr] lg:gap-16 lg:px-10">'),
-              ('<section id="nosotros" className="bg-[#f7fbf5] py-12 sm:py-14">', '<section id="nosotros" className="bg-[#f7fbf5] py-16 sm:py-20 lg:py-24">'),
-              ('<div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">', '<div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">'),
-              ('<section id="contacto" className="bg-[#073b75] py-12 text-white sm:py-14">', '<section id="contacto" className="bg-[#073b75] py-16 text-white sm:py-20 lg:py-24">'),
-              ('<div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:px-10">', '<div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:gap-16 lg:px-10">'),
-              ('<div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 md:grid-cols-[1fr_auto] lg:px-10">', '<div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 sm:py-16 md:grid-cols-[1fr_auto] lg:px-10">'),
-          ]
-
-          layout = Path('app/layout.tsx').read_text(encoding='utf-8')
-          layout = layout.replace("import { Geist, Geist_Mono } from 'next/font/google';", "import { Geist_Mono, Poppins } from 'next/font/google';")
-          layout = layout.replace("const geistSans = Geist({\n  variable: '--font-geist-sans',\n  subsets: ['latin'],\n});", "const poppins = Poppins({\n  variable: '--font-poppins',\n  subsets: ['latin'],\n  weight: ['300', '400', '500', '600', '700', '800', '900'],\n});")
-          layout = layout.replace('${geistSans.variable} ${geistMono.variable} antialiased', '${poppins.variable} ${geistMono.variable} antialiased')
-          write_if_changed('app/layout.tsx', layout)
-
-          globals_css = Path('app/globals.css').read_text(encoding='utf-8')
-          globals_css = globals_css.replace('--font-sans: var(--font-geist-sans);', '--font-sans: var(--font-poppins);')
-          globals_css = globals_css.replace('font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;', 'font-family: var(--font-poppins), Poppins, Arial, Helvetica, sans-serif;\n  letter-spacing: 0;')
-          write_if_changed('app/globals.css', globals_css)
-
-          gh_globals = Path('github-pages/globals.css').read_text(encoding='utf-8')
-          if not gh_globals.startswith("@import url('https://fonts.googleapis.com/css2?family=Poppins"):
-              gh_globals = "@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');\n" + gh_globals
-          gh_globals = gh_globals.replace('--font-sans: var(--font-geist-sans);', "--font-sans: 'Poppins', Arial, Helvetica, sans-serif;")
-          gh_globals = gh_globals.replace('font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;', "font-family: 'Poppins', Arial, Helvetica, sans-serif;\n  letter-spacing: 0;")
-          write_if_changed('github-pages/globals.css', gh_globals)
-
-          gh_index = Path('github-pages/index.html').read_text(encoding='utf-8')
-          gh_index = gh_index.replace('font-family: Arial, sans-serif;', 'font-family: Poppins, Arial, sans-serif;')
-          write_if_changed('github-pages/index.html', gh_index)
-
-          page = Path('app/page.tsx').read_text(encoding='utf-8')
-          for old, new in replacements:
-              page = page.replace(old, new)
-          write_if_changed('app/page.tsx', page)
-          PY
-
       - name: Install dependencies
         run: npm install
         working-directory: github-pages
@@ -87,14 +34,14 @@ jobs:
       - name: Keep GitHub Pages assets intact
         run: touch docs/.nojekyll
 
-      - name: Commit site updates
+      - name: Commit static files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app/globals.css app/layout.tsx app/page.tsx github-pages/globals.css github-pages/index.html docs
+          git add docs
           if git diff --cached --quiet; then
-            echo "No site updates to commit"
+            echo "No static changes to commit"
           else
-            git commit -m "Update typography and section spacing [skip ci]"
+            git commit -m "Build GitHub Pages static files [skip ci]"
             git push
           fi
