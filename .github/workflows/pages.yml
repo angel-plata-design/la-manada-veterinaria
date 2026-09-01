@@ -23,23 +23,6 @@ jobs:
         with:
           node-version: 22
 
-      - name: Apply hero height update
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          path = Path('app/page.tsx')
-          page = path.read_text(encoding='utf-8')
-          page = page.replace(
-              'relative mx-auto min-h-[590px] max-w-7xl px-5 py-9 sm:min-h-[610px] sm:px-8 lg:min-h-[620px] lg:px-10 lg:py-14',
-              'relative mx-auto min-h-[660px] max-w-7xl px-5 py-9 sm:min-h-[710px] sm:px-8 lg:min-h-[750px] lg:px-10 lg:py-14',
-          )
-          page = page.replace(
-              'flex min-h-[490px] max-w-[560px] flex-col items-start justify-center text-left sm:min-h-[500px] lg:min-h-[510px] lg:max-w-[620px]',
-              'flex min-h-[560px] max-w-[560px] flex-col items-start justify-center text-left sm:min-h-[600px] lg:min-h-[640px] lg:max-w-[620px]',
-          )
-          path.write_text(page, encoding='utf-8')
-          PY
-
       - name: Install dependencies
         run: npm install
         working-directory: github-pages
@@ -51,14 +34,14 @@ jobs:
       - name: Keep GitHub Pages assets intact
         run: touch docs/.nojekyll
 
-      - name: Commit hero height update
+      - name: Commit static files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app/page.tsx docs
+          git add docs
           if git diff --cached --quiet; then
-            echo "No hero height changes to commit"
+            echo "No static changes to commit"
           else
-            git commit -m "Increase hero height [skip ci]"
+            git commit -m "Build GitHub Pages static files [skip ci]"
             git push
           fi
