@@ -376,8 +376,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="veterinaria" className="bg-[#f7fbf5] py-12 sm:py-14">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
+      <section id="veterinaria" className="bg-[#f7fbf5] py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16 lg:px-10">
           <div className="relative min-h-[380px] overflow-hidden rounded-lg bg-[#073b75] shadow-[0_24px_70px_rgba(7,59,117,0.16)]">
             <img
               src={photos.serviceConsult}
@@ -415,8 +415,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#073b75] py-12 text-white sm:py-14">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:px-10">
+      <section className="bg-[#073b75] py-16 text-white sm:py-20 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-10">
           <div className="flex flex-col justify-center">
             <p className="text-sm font-black uppercase text-[#98ead7]">Veterinaria</p>
             <h2 className="mt-3 text-4xl font-black sm:text-5xl">
@@ -454,8 +454,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="tienda" className="bg-[#fff7e8] py-12 sm:py-14">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.92fr] lg:px-10">
+      <section id="tienda" className="bg-[#fff7e8] py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_0.92fr] lg:gap-16 lg:px-10">
           <div>
             <p className="text-sm font-black uppercase text-[#c65b00]">Tienda</p>
             <h2 className="mt-3 text-4xl font-black text-[#073b75] sm:text-5xl">
@@ -504,9 +504,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="nosotros" className="bg-[#f7fbf5] py-12 sm:py-14">
+      <section id="nosotros" className="bg-[#f7fbf5] py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
+          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
             <div className="overflow-hidden rounded-lg bg-white shadow-[0_18px_46px_rgba(7,59,117,0.1)]">
               <img
                 src={photos.about}
@@ -550,8 +550,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contacto" className="bg-[#073b75] py-12 text-white sm:py-14">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:px-10">
+      <section id="contacto" className="bg-[#073b75] py-16 text-white sm:py-20 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:gap-16 lg:px-10">
           <div>
             <p className="text-sm font-black uppercase text-[#98ead7]">Contacto</p>
             <h2 className="mt-3 text-4xl font-black sm:text-5xl">¿Tienes dudas sobre tu mascota?</h2>
@@ -604,7 +604,7 @@ export default function Home() {
       </section>
 
       <footer className="bg-white">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-10 sm:px-8 md:grid-cols-[1fr_auto] lg:px-10">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 sm:py-16 md:grid-cols-[1fr_auto] lg:px-10">
           <div>
             <img
               src="/la-manada-logo-solo.png"
