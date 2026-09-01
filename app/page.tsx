@@ -7,7 +7,6 @@ import {
   HeartHandshake,
   HeartPulse,
   MapPin,
-  Menu,
   MessageCircle,
   PawPrint,
   Scissors,
@@ -30,6 +29,14 @@ const facebookUrl = 'https://www.facebook.com/LaManadaMx/?ref=fb';
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#veterinaria', label: 'Veterinaria' },
+  { href: '#tienda', label: 'Tienda' },
+  { href: '#nosotros', label: 'Nosotros' },
+  { href: '#contacto', label: 'Contacto' },
+];
+
+const mobileNavLinks = [
+  { href: '#inicio', label: 'Inicio' },
+  { href: '#veterinaria', label: 'Vet' },
   { href: '#tienda', label: 'Tienda' },
   { href: '#nosotros', label: 'Nosotros' },
   { href: '#contacto', label: 'Contacto' },
@@ -277,25 +284,6 @@ export default function Home() {
             ))}
           </div>
           <div className="flex items-center gap-2">
-            <details className="relative md:hidden">
-              <summary
-                aria-label="Abrir menú"
-                className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-[#cfe5de] bg-white text-[#073b75] shadow-sm transition hover:bg-[#eef9f6] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
-              >
-                <Menu aria-hidden="true" className="h-5 w-5" />
-              </summary>
-              <div className="absolute right-0 top-full z-50 mt-3 w-56 rounded-lg border border-[#d7ebe4] bg-white p-2 shadow-[0_18px_44px_rgba(7,59,117,0.16)]">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    className="block cursor-pointer rounded-md px-4 py-3 text-sm font-black text-[#073b75] transition hover:bg-[#eef9f6]"
-                    href={link.href}
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </details>
             <a
               href={whatsappUrl}
               className="hidden min-h-11 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-5 text-sm font-black text-white shadow-[0_10px_24px_rgba(11,127,120,0.24)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] sm:inline-flex"
@@ -312,6 +300,19 @@ export default function Home() {
             </a>
           </div>
         </nav>
+        <div className="border-t border-[#d7ebe4] bg-white/78 md:hidden">
+          <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-5 py-2 sm:px-8">
+            {mobileNavLinks.map((link) => (
+              <a
+                key={link.href}
+                className="flex h-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#eaf7ee] px-4 text-sm font-black text-[#073b75] transition hover:bg-[#d9f8ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                href={link.href}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
       </header>
 
       <section id="inicio" className="relative overflow-hidden bg-[#eaf7ee] text-white">
