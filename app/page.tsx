@@ -226,7 +226,7 @@ function CtaButtons() {
     <div className="flex flex-col gap-3 sm:flex-row">
       <a
         href={whatsappUrl}
-        className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-7 text-base font-black text-white shadow-[0_14px_30px_rgba(11,127,120,0.3)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+        className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-7 text-base font-bold text-white shadow-[0_14px_30px_rgba(11,127,120,0.3)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
       >
         <MessageCircle aria-hidden="true" className="mr-2 h-5 w-5" />
         Agendar cita
@@ -235,7 +235,7 @@ function CtaButtons() {
         href={mapsUrl}
         target="_blank"
         rel="noreferrer"
-        className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-white px-7 text-base font-black text-[#073b75] shadow-[0_14px_30px_rgba(7,59,117,0.18)] transition hover:bg-[#eef9f6] focus:outline-none focus:ring-4 focus:ring-white/45"
+        className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-white px-7 text-base font-bold text-[#073b75] shadow-[0_14px_30px_rgba(7,59,117,0.18)] transition hover:bg-[#eef9f6] focus:outline-none focus:ring-4 focus:ring-white/45"
       >
         <MapPin aria-hidden="true" className="mr-2 h-5 w-5" />
         Conoce nuestra tienda
@@ -257,7 +257,7 @@ export default function Home() {
     <>
     <a
       href="#inicio"
-      className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-white focus:px-5 focus:py-3 focus:text-sm focus:font-black focus:text-[#073b75] focus:shadow-lg"
+      className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-white focus:px-5 focus:py-3 focus:text-sm focus:font-bold focus:text-[#073b75] focus:shadow-lg"
     >
       Saltar al contenido
     </a>
@@ -286,7 +286,7 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <a
               href={whatsappUrl}
-              className="hidden min-h-11 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-5 text-sm font-black text-white shadow-[0_10px_24px_rgba(11,127,120,0.24)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] sm:inline-flex"
+              className="hidden min-h-11 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-5 text-sm font-bold text-white shadow-[0_10px_24px_rgba(11,127,120,0.24)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] sm:inline-flex"
             >
               <MessageCircle aria-hidden="true" className="mr-2 h-4 w-4" />
               WhatsApp
@@ -305,7 +305,7 @@ export default function Home() {
             {mobileNavLinks.map((link) => (
               <a
                 key={link.href}
-                className="flex h-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#eaf7ee] px-4 text-sm font-black text-[#073b75] transition hover:bg-[#d9f8ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                className="flex h-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#eaf7ee] px-4 text-sm font-bold text-[#073b75] transition hover:bg-[#d9f8ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
                 href={link.href}
               >
                 {link.label}
@@ -346,7 +346,7 @@ export default function Home() {
                   className="hero-copy-slide absolute inset-0 flex flex-col items-start justify-center"
                   style={{ animationDelay: `${index * 5}s` }}
                 >
-                  <p className="max-w-2xl text-4xl font-black leading-[1.02] text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-5xl lg:text-6xl">
+                  <p className="max-w-2xl text-4xl font-bold leading-[1.02] text-white drop-shadow-[0_10px_24px_rgba(0,0,0,0.62)] sm:text-5xl lg:text-6xl">
                     {slide.title}
                   </p>
                   <p className="mt-4 max-w-2xl text-base leading-7 text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.56)] sm:mt-5 sm:text-xl">
@@ -368,7 +368,7 @@ export default function Home() {
             <div key={label} className="flex items-center gap-4 py-5 md:justify-center">
               <IconBubble Icon={Icon} className={color} />
               <div>
-                <p className="text-3xl font-black text-[#073b75]">{value}</p>
+                <p className="text-3xl font-bold text-[#073b75]">{value}</p>
                 <p className="mt-1 font-bold text-[#48636a]">{label}</p>
               </div>
             </div>
@@ -388,13 +388,13 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#073b75]/78 via-transparent to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 text-white">
-              <p className="text-sm font-black uppercase text-[#98ead7]">Veterinaria</p>
-              <h2 className="mt-2 text-3xl font-black sm:text-4xl">Cuidado claro, cercano y preventivo.</h2>
+              <p className="text-sm font-bold uppercase text-[#98ead7]">Veterinaria</p>
+              <h2 className="mt-2 text-3xl font-bold sm:text-4xl">Cuidado claro, cercano y preventivo.</h2>
             </div>
           </div>
           <div className="flex flex-col justify-center">
-            <p className="text-sm font-black uppercase text-[#0b7f78]">Servicios</p>
-            <h2 className="mt-3 text-4xl font-black text-[#073b75] sm:text-5xl">
+            <p className="text-sm font-bold uppercase text-[#0b7f78]">Servicios</p>
+            <h2 className="mt-3 text-4xl font-bold text-[#073b75] sm:text-5xl">
               Cuidamos a cada integrante de tu manada.
             </h2>
             <p className="mt-5 text-lg leading-8 text-[#48636a]">
@@ -405,7 +405,7 @@ export default function Home() {
                 <article key={title} className="grid gap-4 py-5 sm:grid-cols-[auto_1fr] sm:items-center">
                   <IconBubble Icon={Icon} className={color} />
                   <div>
-                    <h3 className="text-2xl font-black text-[#073b75]">{title}</h3>
+                    <h3 className="text-2xl font-bold text-[#073b75]">{title}</h3>
                     <p className="mt-2 leading-7 text-[#48636a]">{copy}</p>
                   </div>
                 </article>
@@ -418,32 +418,32 @@ export default function Home() {
       <section className="bg-[#073b75] py-16 text-white sm:py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:px-10">
           <div className="flex flex-col justify-center">
-            <p className="text-sm font-black uppercase text-[#98ead7]">Veterinaria</p>
-            <h2 className="mt-3 text-4xl font-black sm:text-5xl">
+            <p className="text-sm font-bold uppercase text-[#98ead7]">Veterinaria</p>
+            <h2 className="mt-3 text-4xl font-bold sm:text-5xl">
               Su salud también es parte de nuestro vínculo.
             </h2>
             <p className="mt-5 max-w-xl text-lg leading-8 text-[#dceee9]">
               El cuidado se comunica de forma cálida: atención profesional,
               orientación para casa y seguimiento cuando tu mascota lo necesita.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3 text-sm font-black text-[#eef9f6]">
+            <div className="mt-7 flex flex-wrap gap-3 text-sm font-bold text-[#eef9f6]">
               <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2">Consulta</span>
               <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2">Prevención</span>
               <span className="rounded-full border border-white/20 bg-white/10 px-4 py-2">Seguimiento</span>
             </div>
           </div>
           <div className="rounded-lg border border-white/18 bg-white/10 p-6 shadow-[0_18px_44px_rgba(0,0,0,0.14)]">
-            <p className="text-sm font-black uppercase text-[#fff0bd]">Así funciona</p>
+            <p className="text-sm font-bold uppercase text-[#fff0bd]">Así funciona</p>
             <div className="mt-6 space-y-6">
               {careSteps.map(({ title, copy, Icon }, index) => (
                 <div key={title} className="grid gap-4 border-b border-white/16 pb-6 last:border-0 last:pb-0 sm:grid-cols-[auto_1fr]">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-lg font-black text-[#073b75]">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-lg font-bold text-[#073b75]">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <div>
                     <div className="flex items-center gap-3">
                       <Icon aria-hidden="true" className="h-5 w-5 text-[#98ead7]" />
-                      <h3 className="text-2xl font-black">{title}</h3>
+                      <h3 className="text-2xl font-bold">{title}</h3>
                     </div>
                     <p className="mt-2 leading-7 text-[#dceee9]">{copy}</p>
                   </div>
@@ -457,8 +457,8 @@ export default function Home() {
       <section id="tienda" className="bg-[#fff7e8] py-16 sm:py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_0.92fr] lg:gap-16 lg:px-10">
           <div>
-            <p className="text-sm font-black uppercase text-[#c65b00]">Tienda</p>
-            <h2 className="mt-3 text-4xl font-black text-[#073b75] sm:text-5xl">
+            <p className="text-sm font-bold uppercase text-[#c65b00]">Tienda</p>
+            <h2 className="mt-3 text-4xl font-bold text-[#073b75] sm:text-5xl">
               Un espacio para resolver la rutina de perros y gatos.
             </h2>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[#5f4b32]">
@@ -471,13 +471,13 @@ export default function Home() {
                   className="flex min-h-20 items-center gap-4 rounded-lg border-2 border-white bg-white/82 p-4 shadow-[0_10px_28px_rgba(198,91,0,0.08)]"
                 >
                   <IconBubble Icon={Icon} className={color} />
-                  <h3 className="text-xl font-black text-[#073b75]">{title}</h3>
+                  <h3 className="text-xl font-bold text-[#073b75]">{title}</h3>
                 </div>
               ))}
             </div>
             <a
               href={whatsappUrl}
-              className="mt-8 inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-[#ff8a1d] px-7 text-base font-black text-white shadow-[0_14px_30px_rgba(255,138,29,0.22)] transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
+              className="mt-8 inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-[#ff8a1d] px-7 text-base font-bold text-white shadow-[0_14px_30px_rgba(255,138,29,0.22)] transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
             >
               <ShoppingBag aria-hidden="true" className="mr-2 h-5 w-5" />
               Consultar productos
@@ -495,8 +495,8 @@ export default function Home() {
               <div className="flex items-center gap-3">
                 <IconBubble Icon={Bone} className="bg-[#fff3c4] text-[#8a5800]" />
                 <div>
-                  <p className="text-sm font-black uppercase text-[#c65b00]">Sucursal</p>
-                  <p className="text-2xl font-black">Compra con ayuda, no a ciegas.</p>
+                  <p className="text-sm font-bold uppercase text-[#c65b00]">Sucursal</p>
+                  <p className="text-2xl font-bold">Compra con ayuda, no a ciegas.</p>
                 </div>
               </div>
             </div>
@@ -517,8 +517,8 @@ export default function Home() {
               />
             </div>
             <div className="flex flex-col justify-center">
-              <p className="text-sm font-black uppercase text-[#0b7f78]">Por qué La Manada</p>
-              <h2 className="mt-3 text-4xl font-black text-[#073b75] sm:text-5xl">
+              <p className="text-sm font-bold uppercase text-[#0b7f78]">Por qué La Manada</p>
+              <h2 className="mt-3 text-4xl font-bold text-[#073b75] sm:text-5xl">
                 Los queremos tanto como tú.
               </h2>
               <p className="mt-5 text-lg leading-8 text-[#48636a]">
@@ -529,18 +529,18 @@ export default function Home() {
                   <article key={title} className="grid gap-4 sm:grid-cols-[auto_1fr]">
                     <IconBubble Icon={Icon} className={color} />
                     <div>
-                      <h3 className="text-xl font-black text-[#073b75]">{title}</h3>
+                      <h3 className="text-xl font-bold text-[#073b75]">{title}</h3>
                       <p className="mt-2 leading-7 text-[#48636a]">{copy}</p>
                     </div>
                   </article>
                 ))}
               </div>
               <div className="mt-8 flex flex-col gap-3 border-t border-[#d7ebe4] pt-6 sm:flex-row">
-                <div className="flex items-center gap-3 rounded-full bg-white px-5 py-3 font-black text-[#073b75] shadow-sm">
+                <div className="flex items-center gap-3 rounded-full bg-white px-5 py-3 font-bold text-[#073b75] shadow-sm">
                   <Star aria-hidden="true" className="h-5 w-5 fill-[#ffcf36] text-[#ffcf36]" />
                   4.5+ valoración pública
                 </div>
-                <div className="flex items-center gap-3 rounded-full bg-white px-5 py-3 font-black text-[#073b75] shadow-sm">
+                <div className="flex items-center gap-3 rounded-full bg-white px-5 py-3 font-bold text-[#073b75] shadow-sm">
                   <PawPrint aria-hidden="true" className="h-5 w-5 text-[#0b7f78]" />
                   100+ reseñas reportadas
                 </div>
@@ -553,22 +553,22 @@ export default function Home() {
       <section id="contacto" className="bg-[#073b75] py-16 text-white sm:py-20 lg:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[1fr_0.9fr] lg:gap-16 lg:px-10">
           <div>
-            <p className="text-sm font-black uppercase text-[#98ead7]">Contacto</p>
-            <h2 className="mt-3 text-4xl font-black sm:text-5xl">¿Tienes dudas sobre tu mascota?</h2>
+            <p className="text-sm font-bold uppercase text-[#98ead7]">Contacto</p>
+            <h2 className="mt-3 text-4xl font-bold sm:text-5xl">¿Tienes dudas sobre tu mascota?</h2>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[#dceee9]">
               Escríbenos para agendar, confirmar horarios o revisar productos.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href={whatsappUrl}
-                className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-[#ff8a1d] px-7 text-base font-black text-white transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
+                className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full bg-[#ff8a1d] px-7 text-base font-bold text-white transition hover:bg-[#e7740b] focus:outline-none focus:ring-4 focus:ring-[#ffcf9c]"
               >
                 <MessageCircle aria-hidden="true" className="mr-2 h-5 w-5" />
                 {phone}
               </a>
               <a
                 href={mapsUrl}
-                className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full border border-white/45 bg-white/12 px-7 text-base font-black text-white transition hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/35"
+                className="inline-flex min-h-12 cursor-pointer items-center justify-center rounded-full border border-white/45 bg-white/12 px-7 text-base font-bold text-white transition hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/35"
               >
                 <MapPin aria-hidden="true" className="mr-2 h-5 w-5" />
                 Cómo llegar
@@ -576,7 +576,7 @@ export default function Home() {
             </div>
           </div>
           <address className="rounded-lg border border-white/18 bg-white/12 p-5 not-italic text-[#eef9f6] shadow-[0_18px_44px_rgba(0,0,0,0.14)] sm:p-7">
-            <strong className="block text-2xl font-black text-white">Contacto directo</strong>
+            <strong className="block text-2xl font-bold text-white">Contacto directo</strong>
             <div className="mt-5 grid gap-3">
               {contactDetails.map(({ title, copy, detail, href, Icon }) => (
                 <a
@@ -588,14 +588,14 @@ export default function Home() {
                 >
                   <IconBubble Icon={Icon} className="bg-white text-[#073b75]" />
                   <span>
-                    <span className="block text-xs font-black uppercase text-[#98ead7]">{title}</span>
-                    <span className="mt-1 block text-lg font-black leading-snug text-white">{copy}</span>
+                    <span className="block text-xs font-bold uppercase text-[#98ead7]">{title}</span>
+                    <span className="mt-1 block text-lg font-bold leading-snug text-white">{copy}</span>
                     <span className="mt-1 block text-sm leading-6 text-[#dceee9]">{detail}</span>
                   </span>
                 </a>
               ))}
             </div>
-            <a className="mt-5 inline-flex cursor-pointer items-center font-black text-[#98ead7] hover:text-white" href={facebookUrl}>
+            <a className="mt-5 inline-flex cursor-pointer items-center font-bold text-[#98ead7] hover:text-white" href={facebookUrl}>
               <PawPrint aria-hidden="true" className="mr-2 h-5 w-5" />
               Facebook: LaManadaMx
             </a>
@@ -615,7 +615,7 @@ export default function Home() {
               Veterinaria, estética y tienda para mascotas. #LosQueremosTantoComoTú
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-4 text-sm font-black text-[#073b75]">
+          <div className="flex flex-wrap items-center gap-4 text-sm font-bold text-[#073b75]">
             <a href="#veterinaria" className="hover:text-[#0b7f78]">
               Veterinaria
             </a>
