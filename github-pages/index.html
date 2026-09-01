@@ -33,6 +33,28 @@
     />
     <meta name="twitter:image" content="%BASE_URL%og.png" />
     <link rel="icon" href="%BASE_URL%la-manada-isotipo.png" />
+    <style>
+      .seo-fallback {
+        max-width: 920px;
+        margin: 0 auto;
+        padding: 56px 24px;
+        color: #073b75;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      .seo-fallback nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 24px 0;
+      }
+
+      .seo-fallback a {
+        color: #087f78;
+        font-weight: 700;
+      }
+    </style>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -61,7 +83,61 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main class="seo-fallback" id="inicio">
+        <img
+          src="%BASE_URL%la-manada-isotipo.png"
+          alt="Isotipo de La Manada veterinaria y tienda de mascotas"
+          width="72"
+          height="72"
+        />
+        <h1>La Manada, veterinaria y tienda de mascotas en Tijuana</h1>
+        <p>
+          En La Manada cuidamos a perros y gatos con atención veterinaria,
+          estética, alimentos, higiene y accesorios para cada etapa de su vida.
+          Estamos en Urbiquinta Del Cedro, Tijuana, con un trato cercano para
+          quienes buscan soluciones claras y productos útiles para sus mascotas.
+        </p>
+        <nav aria-label="Secciones principales">
+          <a href="#veterinaria">Veterinaria</a>
+          <a href="#tienda">Tienda para mascotas</a>
+          <a href="#nosotros">Nosotros</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+        <section id="veterinaria">
+          <h2>Veterinaria en Tijuana</h2>
+          <p>
+            Consulta, prevención, orientación y seguimiento para mantener la
+            salud de tu mascota con un servicio amable y práctico.
+          </p>
+        </section>
+        <section id="tienda">
+          <h2>Tienda para perros y gatos</h2>
+          <p>
+            Alimentos, premios, higiene, accesorios y básicos de cuidado para
+            que encuentres en un solo lugar lo que tu mascota necesita.
+          </p>
+        </section>
+        <section id="nosotros">
+          <h2>La Manada</h2>
+          <p>
+            Somos una veterinaria y tienda para mascotas enfocada en bienestar,
+            confianza y atención cercana para familias de Tijuana.
+          </p>
+        </section>
+        <section id="contacto">
+          <h2>Contacto y ubicación</h2>
+          <p>
+            Visítanos en Paseo del Cedro 11007, Urbiquinta Del Cedro, Tijuana,
+            Baja California. También puedes escribir por WhatsApp al
+            <a href="https://wa.me/526649763634">664 976 3634</a> o consultar
+            <a href="https://maps.google.com/?q=Paseo%20del%20Cedro%2011007%20Urbiquinta%20Del%20Cedro%20Tijuana">
+              cómo llegar en Google Maps</a
+            >.
+          </p>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/main.tsx"></script>
   </body>
 </html>
