@@ -23,30 +23,6 @@ jobs:
         with:
           node-version: 22
 
-      - name: Apply Poppins bold update
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          page = Path('app/page.tsx')
-          page_text = page.read_text(encoding='utf-8').replace('font-black', 'font-bold')
-          page.write_text(page_text, encoding='utf-8')
-
-          layout = Path('app/layout.tsx')
-          layout_text = layout.read_text(encoding='utf-8').replace(
-              "weight: ['300', '400', '500', '600', '700', '800', '900']",
-              "weight: ['300', '400', '500', '600', '700']",
-          )
-          layout.write_text(layout_text, encoding='utf-8')
-
-          css = Path('github-pages/globals.css')
-          css_text = css.read_text(encoding='utf-8').replace(
-              'Poppins:wght@300;400;500;600;700;800;900',
-              'Poppins:wght@300;400;500;600;700',
-          )
-          css.write_text(css_text, encoding='utf-8')
-          PY
-
       - name: Install dependencies
         run: npm install
         working-directory: github-pages
@@ -58,14 +34,14 @@ jobs:
       - name: Keep GitHub Pages assets intact
         run: touch docs/.nojekyll
 
-      - name: Commit Poppins update
+      - name: Commit static files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app/layout.tsx app/page.tsx github-pages/globals.css docs
+          git add docs
           if git diff --cached --quiet; then
-            echo "No Poppins changes to commit"
+            echo "No static changes to commit"
           else
-            git commit -m "Use Poppins bold typography [skip ci]"
+            git commit -m "Build GitHub Pages static files [skip ci]"
             git push
           fi
