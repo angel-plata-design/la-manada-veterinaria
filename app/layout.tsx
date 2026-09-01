@@ -2,6 +2,33 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
+const siteUrl = 'https://angel-plata-design.github.io/la-manada-veterinaria';
+const businessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': ['VeterinaryCare', 'PetStore'],
+  name: 'La Manada',
+  url: siteUrl,
+  logo: `${siteUrl}/la-manada-logo-solo.png`,
+  image: `${siteUrl}/og.png`,
+  slogan: 'Los queremos tanto como tú',
+  description:
+    'Veterinaria, estética, alimentos y accesorios para mascotas en Tijuana.',
+  telephone: '+52 664 976 3634',
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Paseo del Cedro 11007, Urbiquinta Del Cedro',
+    addressLocality: 'Tijuana',
+    addressRegion: 'Baja California',
+    addressCountry: 'MX',
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'Tijuana',
+  },
+  sameAs: ['https://www.facebook.com/LaManadaMx/'],
+};
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -13,10 +40,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://la-manada-veterinaria.angeleplata91.chatgpt.site'),
+  metadataBase: new URL(siteUrl),
   title: 'La Manada | Veterinaria y tienda de mascotas en Tijuana',
   description:
     'Veterinaria, estética, alimentos y accesorios para mascotas en Tijuana. Los queremos tanto como tú.',
+  keywords: [
+    'La Manada',
+    'veterinaria en Tijuana',
+    'tienda de mascotas Tijuana',
+    'alimentos para mascotas',
+    'estética canina',
+    'veterinaria Urbiquinta Del Cedro',
+  ],
+  alternates: {
+    canonical: siteUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: '/la-manada-isotipo.png',
   },
@@ -24,7 +66,18 @@ export const metadata: Metadata = {
     title: 'La Manada | Los queremos tanto como tú',
     description:
       'Veterinaria, estética, alimentos y accesorios para cuidar a cada integrante de tu manada.',
-    images: ['/og.png'],
+    url: siteUrl,
+    siteName: 'La Manada',
+    locale: 'es_MX',
+    type: 'website',
+    images: [
+      {
+        url: '/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'La Manada veterinaria y tienda de mascotas en Tijuana',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -46,6 +99,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
+        />
       </body>
     </html>
   );
