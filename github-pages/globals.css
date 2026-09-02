@@ -203,60 +203,55 @@ summary::-webkit-details-marker {
     );
 }
 
-.hero-bg-slide,
-.hero-copy-slide {
+/* All hero slides start hidden; animation drives visibility */
+.hero-bg-slide {
   opacity: 0;
-  animation: hero-fade 20s infinite;
+  will-change: opacity;
+  animation: hero-bg-fade 20s infinite;
 }
 
 .hero-bg-slide img {
-  transform: scale(1.01);
-  animation: hero-image 20s infinite;
+  transform: scale(1.0);
+  will-change: transform;
+  animation: hero-image-zoom 20s ease-in-out infinite;
 }
 
 .hero-copy-slide {
-  transform: translateY(12px);
-  animation: hero-copy 20s infinite;
+  opacity: 0;
+  transform: translateY(22px);
+  will-change: opacity, transform;
+  animation: hero-text-slide 20s infinite;
 }
 
-@keyframes hero-fade {
-  0%,
-  24% {
-    opacity: 1;
-  }
-
-  30%,
-  100% {
-    opacity: 0;
-  }
+/* ─── Background image crossfade ─────────────────────────── */
+@keyframes hero-bg-fade {
+  /* fade in */
+  0%   { opacity: 0; animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); }
+  7%   { opacity: 1; animation-timing-function: linear; }
+  /* hold */
+  22%  { opacity: 1; animation-timing-function: cubic-bezier(0.4, 0, 0.6, 1); }
+  /* fade out */
+  29%  { opacity: 0; }
+  100% { opacity: 0; }
 }
 
-@keyframes hero-copy {
-  0%,
-  18% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  22%,
-  100% {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
+/* ─── Ken Burns zoom synced with visible window ──────────── */
+@keyframes hero-image-zoom {
+  0%   { transform: scale(1.0); }
+  30%  { transform: scale(1.07); }
+  100% { transform: scale(1.07); }
 }
 
-@keyframes hero-image {
-  0% {
-    transform: scale(1.01);
-  }
-
-  30% {
-    transform: scale(1.04);
-  }
-
-  100% {
-    transform: scale(1.04);
-  }
+/* ─── Text: same opacity timing as BG + directional motion ─ */
+@keyframes hero-text-slide {
+  /* slide up + fade in — spring ease */
+  0%   { opacity: 0; transform: translateY(22px); animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+  9%   { opacity: 1; transform: translateY(0);    animation-timing-function: linear; }
+  /* hold */
+  22%  { opacity: 1; transform: translateY(0);    animation-timing-function: cubic-bezier(0.4, 0, 1, 1); }
+  /* slide up + fade out */
+  28%  { opacity: 0; transform: translateY(-14px); }
+  100% { opacity: 0; transform: translateY(-14px); }
 }
 
 @media (max-width: 640px) {
@@ -277,6 +272,7 @@ summary::-webkit-details-marker {
   .hero-bg-slide img,
   .hero-copy-slide {
     animation: none;
+    will-change: auto;
   }
 
   .hero-bg-slide:first-child,
