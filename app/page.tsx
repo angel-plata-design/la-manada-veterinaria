@@ -285,31 +285,31 @@ export default function Home() {
               <MessageCircle aria-hidden="true" className="mr-2 h-4 w-4" />
               WhatsApp
             </a>
-            <details className="group md:hidden">
+            <details className="mobile-menu group md:hidden">
               <summary
-                className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#c8e1d8] bg-white text-[#073b75] shadow-[0_12px_28px_rgba(7,59,117,0.12)] transition hover:bg-[#eaf7ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                className="mobile-menu-toggle flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#c8e1d8] bg-white text-[#073b75] shadow-[0_12px_28px_rgba(7,59,117,0.12)] transition hover:bg-[#eaf7ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
                 aria-label="Abrir menú"
               >
                 <Menu aria-hidden="true" className="h-6 w-6 group-open:hidden" />
                 <X aria-hidden="true" className="hidden h-6 w-6 group-open:block" />
               </summary>
-              <div className="fixed inset-x-0 bottom-0 top-[73px] z-50 overflow-y-auto bg-[#f7fbf5] px-5 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-7 shadow-[0_30px_80px_rgba(7,59,117,0.2)]">
-                <div className="mx-auto flex min-h-full max-w-sm flex-col justify-between gap-8">
+              <div className="mobile-menu-panel">
+                <div className="mobile-menu-shell">
                   <div>
                     <img
                       src="/la-manada-logo-solo.png"
                       alt="La Manada"
-                      className="h-auto w-56 max-w-full object-contain"
+                      className="mobile-menu-logo h-auto max-w-full object-contain"
                     />
-                    <nav className="mt-8 grid gap-2" aria-label="Menú móvil">
+                    <nav className="mobile-menu-nav" aria-label="Menú móvil">
                       {navLinks.map((link, index) => (
                         <a
                           key={link.href}
                           href={link.href}
-                          className="group/link flex min-h-16 cursor-pointer items-center justify-between border-b border-[#d7ebe4] py-4 text-2xl font-bold leading-snug text-[#073b75] transition hover:text-[#0b7f78] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                          className="mobile-menu-link group/link cursor-pointer"
                         >
                           <span>{link.label}</span>
-                          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf7ee] text-xs font-bold text-[#0b7f78] transition group-hover/link:bg-[#d9f8ee]">
+                          <span className="mobile-menu-index">
                             {String(index + 1).padStart(2, '0')}
                           </span>
                         </a>
@@ -320,7 +320,7 @@ export default function Home() {
                     href={mapsUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex min-h-14 cursor-pointer items-center justify-center rounded-full bg-[#073b75] px-6 text-base font-bold text-white shadow-[0_14px_30px_rgba(7,59,117,0.18)] transition hover:bg-[#0b7f78] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                    className="mobile-menu-map cursor-pointer"
                   >
                     <MapPin aria-hidden="true" className="mr-2 h-5 w-5" />
                     Conoce nuestra tienda
