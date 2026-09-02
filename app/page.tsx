@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useCallback, useEffect, useState } from 'react';
 import {
+  ArrowUp,
   Bone,
   Cat,
   Clock,
@@ -251,6 +252,20 @@ function IconBubble({ Icon, className }: { Icon: LucideIcon; className: string }
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const scrollThreshold = 400;
+
+  // Show/hide back-to-top button based on scroll position
+  useEffect(() => {
+    const onScroll = () => setShowBackToTop(window.scrollY > scrollThreshold);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const scrollToTop = useCallback(() => {
+    const target = document.getElementById('inicio');
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
 
   // Lock / unlock body scroll when mobile menu opens or closes
   useEffect(() => {
@@ -347,6 +362,20 @@ export default function Home() {
           </div>
         </nav>
       </header>
+      {/* Back-to-top button — visible after scrolling, above WhatsApp on mobile */}
+      <button
+        type="button"
+        onClick={scrollToTop}
+        aria-label="Volver al inicio"
+        className={[
+          'fixed right-4 z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white text-[#073b75] shadow-[0_10px_28px_rgba(7,59,117,0.18)] border border-[#d7ebe4] transition-all duration-300 hover:bg-[#eaf7ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]',
+          'bottom-[calc(5.5rem+env(safe-area-inset-bottom))] md:bottom-8',
+          showBackToTop ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none',
+        ].join(' ')}
+      >
+        <ArrowUp aria-hidden="true" className="h-5 w-5" />
+      </button>
+
       <a
         href={whatsappUrl}
         className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-40 inline-flex min-h-14 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-5 text-base font-bold text-white shadow-[0_18px_38px_rgba(11,127,120,0.34)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] md:hidden"
