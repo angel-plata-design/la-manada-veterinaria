@@ -1,0 +1,139 @@
+name: Apply fullscreen mobile menu
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Patch mobile menu
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('app/page.tsx')
+          text = path.read_text(encoding='utf-8')
+
+          if '  X,\n} from \'lucide-react\';' not in text:
+              text = text.replace('  Syringe,\n} from \'lucide-react\';', '  Syringe,\n  X,\n} from \'lucide-react\';')
+
+          text = text.replace(
+              '<header className="sticky top-0 z-40 border-b border-[#d7ebe4] bg-[#f7fbf5]/94 backdrop-blur">',
+              '<header className="sticky top-0 z-[60] border-b border-[#d7ebe4] bg-[#f7fbf5]/94 backdrop-blur">',
+          )
+
+          old = '''            <details className="group relative md:hidden">
+              <summary
+                className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#c8e1d8] bg-white text-[#073b75] shadow-[0_12px_28px_rgba(7,59,117,0.12)] transition hover:bg-[#eaf7ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                aria-label="Abrir menú"
+              >
+                <Menu aria-hidden="true" className="h-6 w-6" />
+              </summary>
+              <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(82vw,320px)] overflow-hidden rounded-lg border border-[#d7ebe4] bg-white shadow-[0_22px_54px_rgba(7,59,117,0.18)]">
+                <div className="grid p-2">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className="flex min-h-12 cursor-pointer items-center justify-between rounded-md px-4 text-base font-bold text-[#073b75] transition hover:bg-[#eaf7ee] hover:text-[#0b7f78] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                    >
+                      {link.label}
+                      <PawPrint aria-hidden="true" className="h-4 w-4 text-[#0b7f78]" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </details>'''
+
+          new = '''            <details className="group md:hidden">
+              <summary
+                className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#c8e1d8] bg-white text-[#073b75] shadow-[0_12px_28px_rgba(7,59,117,0.12)] transition hover:bg-[#eaf7ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                aria-label="Abrir menú"
+              >
+                <Menu aria-hidden="true" className="h-6 w-6 group-open:hidden" />
+                <X aria-hidden="true" className="hidden h-6 w-6 group-open:block" />
+              </summary>
+              <div className="fixed inset-x-0 bottom-0 top-[73px] z-50 overflow-y-auto bg-[#f7fbf5] px-5 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-7 shadow-[0_30px_80px_rgba(7,59,117,0.2)]">
+                <div className="mx-auto flex min-h-full max-w-sm flex-col justify-between gap-8">
+                  <div>
+                    <img
+                      src="/la-manada-logo-solo.png"
+                      alt="La Manada"
+                      className="h-auto w-56 max-w-full object-contain"
+                    />
+                    <nav className="mt-8 grid gap-2" aria-label="Menú móvil">
+                      {navLinks.map((link, index) => (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          className="group/link flex min-h-16 cursor-pointer items-center justify-between border-b border-[#d7ebe4] py-4 text-2xl font-bold leading-snug text-[#073b75] transition hover:text-[#0b7f78] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                        >
+                          <span>{link.label}</span>
+                          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf7ee] text-xs font-bold text-[#0b7f78] transition group-hover/link:bg-[#d9f8ee]">
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                        </a>
+                      ))}
+                    </nav>
+                  </div>
+                  <a
+                    href={mapsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex min-h-14 cursor-pointer items-center justify-center rounded-full bg-[#073b75] px-6 text-base font-bold text-white shadow-[0_14px_30px_rgba(7,59,117,0.18)] transition hover:bg-[#0b7f78] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                  >
+                    <MapPin aria-hidden="true" className="mr-2 h-5 w-5" />
+                    Conoce nuestra tienda
+                  </a>
+                </div>
+              </div>
+            </details>'''
+
+          if old in text:
+              text = text.replace(old, new)
+          elif new not in text:
+              raise SystemExit('Expected mobile menu block was not found')
+
+          text = text.replace(
+              'className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-50 inline-flex min-h-14',
+              'className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-40 inline-flex min-h-14',
+          )
+
+          path.write_text(text, encoding='utf-8')
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: github-pages
+
+      - name: Build static site
+        run: npm run build
+        working-directory: github-pages
+
+      - name: Keep GitHub Pages assets intact
+        run: touch docs/.nojekyll
+
+      - name: Commit mobile menu files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/page.tsx docs
+          if git diff --cached --quiet; then
+            echo "No mobile menu changes to commit"
+          else
+            git commit -m "Make mobile menu full screen [skip ci]"
+            git push
+          fi
