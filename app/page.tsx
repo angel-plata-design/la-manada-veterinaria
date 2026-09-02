@@ -347,6 +347,14 @@ export default function Home() {
           </div>
         </nav>
       </header>
+      <a
+        href={whatsappUrl}
+        className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-40 inline-flex min-h-14 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-5 text-base font-bold text-white shadow-[0_18px_38px_rgba(11,127,120,0.34)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] md:hidden"
+        aria-label="WhatsApp de La Manada"
+      >
+        <MessageCircle aria-hidden="true" className="mr-2 h-5 w-5" />
+        WhatsApp
+      </a>
 
       {/* Mobile menu overlay — rendered as a sibling to header, always in DOM but hidden */}
       {menuOpen && (
