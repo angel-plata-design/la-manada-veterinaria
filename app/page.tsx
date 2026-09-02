@@ -1,4 +1,7 @@
+'use client';
+
 /* eslint-disable @next/next/no-img-element */
+import { useCallback, useEffect, useState } from 'react';
 import {
   Bone,
   Cat,
@@ -247,6 +250,47 @@ function IconBubble({ Icon, className }: { Icon: LucideIcon; className: string }
 }
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Lock / unlock body scroll when mobile menu opens or closes
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
+
+  // Close menu on Escape key
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [menuOpen]);
+
+  // Navigate to a section anchor and close the menu
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      e.preventDefault();
+      setMenuOpen(false);
+      // Wait for the panel to close (and overflow to be restored) before scrolling
+      requestAnimationFrame(() => {
+        const id = href.replace('#', '');
+        const target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    },
+    [],
+  );
+
   return (
     <>
     <a
@@ -258,7 +302,7 @@ export default function Home() {
     <main className="min-h-screen bg-[#f7fbf5] text-[#102b36]">
       <header className="sticky top-0 z-[60] border-b border-[#d7ebe4] bg-[#f7fbf5]/94 backdrop-blur">
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8 lg:px-10">
-          <a href="#inicio" className="flex min-w-0 cursor-pointer items-center gap-3" aria-label="Ir al inicio">
+          <a href="#inicio" onClick={(e) => handleNavClick(e, '#inicio')} className="flex min-w-0 cursor-pointer items-center gap-3" aria-label="Ir al inicio">
             <img
               src="/la-manada-isotipo.png"
               alt="Isotipo de La Manada"
@@ -285,52 +329,90 @@ export default function Home() {
               <MessageCircle aria-hidden="true" className="mr-2 h-4 w-4" />
               WhatsApp
             </a>
-            <details className="mobile-menu group md:hidden">
-              <summary
-                className="mobile-menu-toggle flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#c8e1d8] bg-white text-[#073b75] shadow-[0_12px_28px_rgba(7,59,117,0.12)] transition hover:bg-[#eaf7ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
-                aria-label="Abrir menú"
-              >
-                <Menu aria-hidden="true" className="h-6 w-6 group-open:hidden" />
-                <X aria-hidden="true" className="hidden h-6 w-6 group-open:block" />
-              </summary>
-              <div className="mobile-menu-panel">
-                <div className="mobile-menu-shell">
-                  <div>
-                    <img
-                      src="/la-manada-logo-solo.png"
-                      alt="La Manada"
-                      className="mobile-menu-logo h-auto max-w-full object-contain"
-                    />
-                    <nav className="mobile-menu-nav" aria-label="Menú móvil">
-                      {navLinks.map((link, index) => (
-                        <a
-                          key={link.href}
-                          href={link.href}
-                          className="mobile-menu-link group/link cursor-pointer"
-                        >
-                          <span>{link.label}</span>
-                          <span className="mobile-menu-index">
-                            {String(index + 1).padStart(2, '0')}
-                          </span>
-                        </a>
-                      ))}
-                    </nav>
-                  </div>
-                  <a
-                    href={mapsUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mobile-menu-map cursor-pointer"
-                  >
-                    <MapPin aria-hidden="true" className="mr-2 h-5 w-5" />
-                    Conoce nuestra tienda
-                  </a>
-                </div>
-              </div>
-            </details>
+            {/* Mobile hamburger button — controlled by React state, no <details> */}
+            <button
+              type="button"
+              onClick={() => setMenuOpen((v) => !v)}
+              className="mobile-menu-toggle flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#c8e1d8] bg-white text-[#073b75] shadow-[0_12px_28px_rgba(7,59,117,0.12)] transition hover:bg-[#eaf7ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] md:hidden"
+              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu-panel"
+            >
+              {menuOpen ? (
+                <X aria-hidden="true" className="h-6 w-6" />
+              ) : (
+                <Menu aria-hidden="true" className="h-6 w-6" />
+              )}
+            </button>
           </div>
         </nav>
       </header>
+
+      {/* Mobile menu overlay — rendered as a sibling to header, always in DOM but hidden */}
+      {menuOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 z-[70] bg-black/20 md:hidden"
+            aria-hidden="true"
+            onClick={() => setMenuOpen(false)}
+          />
+          {/* Panel */}
+          <div
+            id="mobile-menu-panel"
+            className="mobile-menu-panel fixed inset-0 z-[80] md:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menú de navegación"
+          >
+            {/* Close button fixed inside panel */}
+            <button
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              className="absolute right-5 top-[calc(0.75rem+env(safe-area-inset-top))] flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#c8e1d8] bg-white text-[#073b75] shadow-[0_12px_28px_rgba(7,59,117,0.12)] transition hover:bg-[#eaf7ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+              aria-label="Cerrar menú"
+            >
+              <X aria-hidden="true" className="h-6 w-6" />
+            </button>
+
+            <div className="mobile-menu-shell">
+              <div>
+                <img
+                  src="/la-manada-logo-solo.png"
+                  alt="La Manada"
+                  className="mobile-menu-logo h-auto max-w-full object-contain"
+                />
+                <nav className="mobile-menu-nav" aria-label="Menú móvil">
+                  {navLinks.map((link, index) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className="mobile-menu-link group/link cursor-pointer"
+                    >
+                      <span>{link.label}</span>
+                      <span className="mobile-menu-index">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </a>
+                  ))}
+                </nav>
+              </div>
+              <a
+                href={mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="mobile-menu-map cursor-pointer"
+              >
+                <MapPin aria-hidden="true" className="mr-2 h-5 w-5" />
+                Conoce nuestra tienda
+              </a>
+            </div>
+          </div>
+        </>
+      )}
+
       <a
         href={whatsappUrl}
         className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-40 inline-flex min-h-14 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-5 text-base font-bold text-white shadow-[0_18px_38px_rgba(11,127,120,0.34)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] md:hidden"

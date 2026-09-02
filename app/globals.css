@@ -38,17 +38,6 @@ summary::-webkit-details-marker {
   display: none;
 }
 
-html:has(.mobile-menu[open]),
-body:has(.mobile-menu[open]) {
-  overflow: hidden;
-}
-
-.mobile-menu[open] > .mobile-menu-toggle {
-  position: fixed;
-  top: calc(0.75rem + env(safe-area-inset-top));
-  right: 1.25rem;
-  z-index: 90;
-}
 
 .mobile-menu-panel {
   position: fixed;
