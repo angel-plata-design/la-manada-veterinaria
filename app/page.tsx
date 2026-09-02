@@ -7,6 +7,7 @@ import {
   HeartHandshake,
   HeartPulse,
   MapPin,
+  Menu,
   MessageCircle,
   PawPrint,
   Scissors,
@@ -29,14 +30,6 @@ const facebookUrl = 'https://www.facebook.com/LaManadaMx/?ref=fb';
 const navLinks = [
   { href: '#inicio', label: 'Inicio' },
   { href: '#veterinaria', label: 'Veterinaria' },
-  { href: '#tienda', label: 'Tienda' },
-  { href: '#nosotros', label: 'Nosotros' },
-  { href: '#contacto', label: 'Contacto' },
-];
-
-const mobileNavLinks = [
-  { href: '#inicio', label: 'Inicio' },
-  { href: '#veterinaria', label: 'Vet' },
   { href: '#tienda', label: 'Tienda' },
   { href: '#nosotros', label: 'Nosotros' },
   { href: '#contacto', label: 'Contacto' },
@@ -286,34 +279,44 @@ export default function Home() {
           <div className="flex items-center gap-2">
             <a
               href={whatsappUrl}
-              className="hidden min-h-11 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-5 text-sm font-bold text-white shadow-[0_10px_24px_rgba(11,127,120,0.24)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] sm:inline-flex"
+              className="hidden min-h-11 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-5 text-sm font-bold text-white shadow-[0_10px_24px_rgba(11,127,120,0.24)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] md:inline-flex"
             >
               <MessageCircle aria-hidden="true" className="mr-2 h-4 w-4" />
               WhatsApp
             </a>
-            <a
-              href={whatsappUrl}
-              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] text-white shadow-[0_10px_24px_rgba(11,127,120,0.24)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] sm:hidden"
-              aria-label="WhatsApp"
-            >
-              <MessageCircle aria-hidden="true" className="h-5 w-5" />
-            </a>
+            <details className="group relative md:hidden">
+              <summary
+                className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#c8e1d8] bg-white text-[#073b75] shadow-[0_12px_28px_rgba(7,59,117,0.12)] transition hover:bg-[#eaf7ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                aria-label="Abrir menú"
+              >
+                <Menu aria-hidden="true" className="h-6 w-6" />
+              </summary>
+              <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(82vw,320px)] overflow-hidden rounded-lg border border-[#d7ebe4] bg-white shadow-[0_22px_54px_rgba(7,59,117,0.18)]">
+                <div className="grid p-2">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className="flex min-h-12 cursor-pointer items-center justify-between rounded-md px-4 text-base font-bold text-[#073b75] transition hover:bg-[#eaf7ee] hover:text-[#0b7f78] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                    >
+                      {link.label}
+                      <PawPrint aria-hidden="true" className="h-4 w-4 text-[#0b7f78]" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </details>
           </div>
         </nav>
-        <div className="border-t border-[#d7ebe4] bg-white/78 md:hidden">
-          <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-5 py-2 sm:px-8">
-            {mobileNavLinks.map((link) => (
-              <a
-                key={link.href}
-                className="flex h-10 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#eaf7ee] px-4 text-sm font-bold text-[#073b75] transition hover:bg-[#d9f8ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
-                href={link.href}
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
       </header>
+      <a
+        href={whatsappUrl}
+        className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-50 inline-flex min-h-14 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-5 text-base font-bold text-white shadow-[0_18px_38px_rgba(11,127,120,0.34)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] md:hidden"
+        aria-label="WhatsApp de La Manada"
+      >
+        <MessageCircle aria-hidden="true" className="mr-2 h-5 w-5" />
+        WhatsApp
+      </a>
 
       <section id="inicio" className="relative overflow-hidden bg-[#eaf7ee] text-white">
         {heroSlides.map((slide, index) => (
