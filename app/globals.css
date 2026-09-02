@@ -38,6 +38,7 @@ summary::-webkit-details-marker {
   display: none;
 }
 
+html:has(.mobile-menu[open]),
 body:has(.mobile-menu[open]) {
   overflow: hidden;
 }
@@ -53,6 +54,7 @@ body:has(.mobile-menu[open]) {
   position: fixed;
   inset: 0;
   z-index: 70;
+  height: 100vh;
   height: 100dvh;
   width: 100vw;
   overflow: hidden;
