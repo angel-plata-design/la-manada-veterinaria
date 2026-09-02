@@ -17,6 +17,7 @@ import {
   Star,
   Stethoscope,
   Syringe,
+  X,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -255,7 +256,7 @@ export default function Home() {
       Saltar al contenido
     </a>
     <main className="min-h-screen bg-[#f7fbf5] text-[#102b36]">
-      <header className="sticky top-0 z-40 border-b border-[#d7ebe4] bg-[#f7fbf5]/94 backdrop-blur">
+      <header className="sticky top-0 z-[60] border-b border-[#d7ebe4] bg-[#f7fbf5]/94 backdrop-blur">
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-3 sm:px-8 lg:px-10">
           <a href="#inicio" className="flex min-w-0 cursor-pointer items-center gap-3" aria-label="Ir al inicio">
             <img
@@ -284,25 +285,46 @@ export default function Home() {
               <MessageCircle aria-hidden="true" className="mr-2 h-4 w-4" />
               WhatsApp
             </a>
-            <details className="group relative md:hidden">
+            <details className="group md:hidden">
               <summary
                 className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[#c8e1d8] bg-white text-[#073b75] shadow-[0_12px_28px_rgba(7,59,117,0.12)] transition hover:bg-[#eaf7ee] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
                 aria-label="Abrir menú"
               >
-                <Menu aria-hidden="true" className="h-6 w-6" />
+                <Menu aria-hidden="true" className="h-6 w-6 group-open:hidden" />
+                <X aria-hidden="true" className="hidden h-6 w-6 group-open:block" />
               </summary>
-              <div className="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(82vw,320px)] overflow-hidden rounded-lg border border-[#d7ebe4] bg-white shadow-[0_22px_54px_rgba(7,59,117,0.18)]">
-                <div className="grid p-2">
-                  {navLinks.map((link) => (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      className="flex min-h-12 cursor-pointer items-center justify-between rounded-md px-4 text-base font-bold text-[#073b75] transition hover:bg-[#eaf7ee] hover:text-[#0b7f78] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
-                    >
-                      {link.label}
-                      <PawPrint aria-hidden="true" className="h-4 w-4 text-[#0b7f78]" />
-                    </a>
-                  ))}
+              <div className="fixed inset-x-0 bottom-0 top-[73px] z-50 overflow-y-auto bg-[#f7fbf5] px-5 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-7 shadow-[0_30px_80px_rgba(7,59,117,0.2)]">
+                <div className="mx-auto flex min-h-full max-w-sm flex-col justify-between gap-8">
+                  <div>
+                    <img
+                      src="/la-manada-logo-solo.png"
+                      alt="La Manada"
+                      className="h-auto w-56 max-w-full object-contain"
+                    />
+                    <nav className="mt-8 grid gap-2" aria-label="Menú móvil">
+                      {navLinks.map((link, index) => (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          className="group/link flex min-h-16 cursor-pointer items-center justify-between border-b border-[#d7ebe4] py-4 text-2xl font-bold leading-snug text-[#073b75] transition hover:text-[#0b7f78] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                        >
+                          <span>{link.label}</span>
+                          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#eaf7ee] text-xs font-bold text-[#0b7f78] transition group-hover/link:bg-[#d9f8ee]">
+                            {String(index + 1).padStart(2, '0')}
+                          </span>
+                        </a>
+                      ))}
+                    </nav>
+                  </div>
+                  <a
+                    href={mapsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex min-h-14 cursor-pointer items-center justify-center rounded-full bg-[#073b75] px-6 text-base font-bold text-white shadow-[0_14px_30px_rgba(7,59,117,0.18)] transition hover:bg-[#0b7f78] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3]"
+                  >
+                    <MapPin aria-hidden="true" className="mr-2 h-5 w-5" />
+                    Conoce nuestra tienda
+                  </a>
                 </div>
               </div>
             </details>
@@ -311,7 +333,7 @@ export default function Home() {
       </header>
       <a
         href={whatsappUrl}
-        className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-50 inline-flex min-h-14 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-5 text-base font-bold text-white shadow-[0_18px_38px_rgba(11,127,120,0.34)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] md:hidden"
+        className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-40 inline-flex min-h-14 cursor-pointer items-center justify-center rounded-full bg-[#0b7f78] px-5 text-base font-bold text-white shadow-[0_18px_38px_rgba(11,127,120,0.34)] transition hover:bg-[#096b66] focus:outline-none focus:ring-4 focus:ring-[#9fe3d3] md:hidden"
         aria-label="WhatsApp de La Manada"
       >
         <MessageCircle aria-hidden="true" className="mr-2 h-5 w-5" />
